@@ -1,15 +1,7 @@
-function checkPassword(password) {
-    const ADMIN_PASSWORD = 'jqueryismyjam';
-    let message;
-
-    if () { // Change this line
-    message =  'Canceled by user!';
-    } else if () { // Change this line
-    message = 'Welcome!';
-    } else {
-    message = 'Access denied, wrong password!';
-    }
-
-    return message;
+function checkForSpam(message) {
+  let result;
+  // Change code below this line
+    result = message.toLowerCase().includes("spam") || message.toLowerCase().includes("sale")
+  return result;
 }
-
+console.log(checkForSpam("Latest technology news"));
