@@ -1,7 +1,6 @@
-function checkForSpam(message) {
-  let result;
-  // Change code below this line
-    result = message.toLowerCase().includes("spam") || message.toLowerCase().includes("sale")
-  return result;
+const start = 3;
+const end = 7;
+
+for (let i = ; i <= ; i += ) { // Change this line
+  console.log(i);
 }
-console.log(checkForSpam("Latest technology news"));
