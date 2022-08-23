@@ -29,3 +29,70 @@ const findLogin = function (allLogins, loginTrue) {
         : `Пользователь ${loginTrue} не найден`
 }
 console.log(findLogin(logins, "asd23"));
+
+//! Напиши функцию поиска самого маленького числа в массиве
+const smallest = function (massive) {
+    let small = massive[0]
+    for (const number of massive) {
+        if (number < small) {
+            small = number;
+        }
+    }
+    return small;
+}
+
+//! Напиши функцию инверсии символа в массиве
+const inverted = function (string) {
+    let invertedString = '';
+    for (const letter of string) {
+        invertedString += letter === letter.toLowerCase()
+        ? letter.toUpperCase()
+        : letter.toLowerCase();
+    }
+    return invertedString;
+}
+console.log(inverted("asdfrEWQ"));
+
+
+//! Напиши функцию которая сделает slug в строке (всё в маленьком регистре и через тире)
+const slug = function (string){
+    return string.toLowerCase().split(' ').join('-');
+}
+console.log(slug("We are ready for You"));
+
+//! Напиши функцию которая сделает массив из любых значений которые пришли
+const fn = function (...asdf) { // ? ...имя преобразует данные в массив
+    console.log(asdf); // [1, 2, 3, 4, 'qwe', Array(3)]
+}
+fn(1, 2, 3, 4, 'qwe', [45, 67, 88])
+
+const fn1 = function (a, b, ...asdf) { // ? ...имя преобразует данные в массив первые 2-е запишет в переменные
+    console.log(a, b); // 1 2
+    console.log(asdf); // [3, 4, 'qwe', Array(3)]
+}
+fn1(1, 2, 3, 4, 'qwe', [45, 67, 88])
+
+// ! Подсчёт чисел в массиве если они числа
+const sum = function (...args) {
+    let summa = 0;
+    for (const number of args) {
+        if (number === Number(number)) {
+            summa += number;
+        }
+    }
+    return summa;
+}
+console.log(sum(1, 2, 3, 4, 'qwe'));
+
+//! Напиши функцию которая сделает новый массив из чисел которые совпадают в массиве
+const filterNumbers = function (array, ...args) {
+    let newMassive = [];
+    for (const arg of args) {
+        if (array.includes(arg)) {
+            newMassive.push(arg);
+        }
+    }
+    return newMassive;
+}
+
+console.log(filterNumbers([1,2,3,4,5],34,12,5,26,2));
