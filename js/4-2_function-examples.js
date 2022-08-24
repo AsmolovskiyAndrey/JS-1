@@ -104,19 +104,20 @@ console.log(filterNumbers([1, 2, 3, 4, 5], 34, 12, 5, 26, 2));
 // * setTimeout(функция или код, задержкаб параметр, ...параметр)
 // * setInterval(функция или код, задержкаб параметр, ...параметр)
 
-function TimeName(name, surname) {
+function ShowName(name, surname) {
     console.log(`Привет ${surname} ${name}`);
 }
 
-setTimeout(TimeName, 3000, "Andrii", "Asmolovskyi"); // через 3 секунды будет Привет Asmolovskyi Andrii
+setTimeout(ShowName, 3000, "Andrii", "Asmolovskyi"); // через 3 секунды будет Привет Asmolovskyi Andrii
 
 
+let res = 0;
+function TimeInterval(name) {
+    res += 1;
+    console.log(`Привет ${name}`);
+    if (res === 5) {
+        clearInterval(timeld);
+    }
+}
 
-// function TimeInterval(name, surname) {
-//     for (let i = 0; i < 11; i++) {
-//         console.log(`Привет ${surname} ${name}`);  
-//     }
-//     return
-// }
-
-// setInterval(TimeInterval, 1000, "Andrii", "Asmolovskyi"); // каждую секунду выведет 10 раз
+let timeld = setInterval(TimeInterval, 1000, "Asmolovskyi"); // каждую секунду выведет 5 раз
