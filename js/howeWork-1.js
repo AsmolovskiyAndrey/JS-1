@@ -1,10 +1,12 @@
-function createArrayOfNumbers(min, max) {
-  const numbers = [];
+function includes(array, value) {
   // Change code below this line
-    for (let i = min; i <= max; i++) {
-        numbers.push(i);       
+    let result = false;
+    for (const iter of array) {
+        if (iter === value) {
+            result = true;
+            return result;
+        }
     }
-    return numbers;
+    return result;
   // Change code above this line
-  return numbers;
 }
