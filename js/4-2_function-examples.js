@@ -1,5 +1,5 @@
 //! Напиши функцию которая принимает массив цен и возвращает их сумму
-const calculateTotalPrice = function (price) {
+function calculateTotalPrice(price) {
     let total = 0;
     for (const i of price) {
         total += i ;
@@ -42,7 +42,7 @@ const smallest = function (massive) {
 }
 
 //! Напиши функцию инверсии символа в массиве
-const inverted = function (string) {
+function inverted(string) {
     let invertedString = '';
     for (const letter of string) {
         invertedString += letter === letter.toLowerCase()
@@ -73,7 +73,7 @@ const fn1 = function (a, b, ...asdf) { // ? ...имя преобразует д�
 fn1(1, 2, 3, 4, 'qwe', [45, 67, 88])
 
 // ! Подсчёт чисел в массиве если они числа
-const sum = function (...args) {
+function sum(...args) {
     let summa = 0;
     for (const number of args) {
         if (number === Number(number)) {
@@ -85,7 +85,7 @@ const sum = function (...args) {
 console.log(sum(1, 2, 3, 4, 'qwe'));
 
 //! Напиши функцию которая сделает новый массив из чисел которые совпадают в массиве
-const filterNumbers = function (array, ...args) {
+function filterNumbers(array, ...args) {
     let newMassive = [];
     for (const arg of args) {
         if (array.includes(arg)) {
@@ -95,4 +95,28 @@ const filterNumbers = function (array, ...args) {
     return newMassive;
 }
 
-console.log(filterNumbers([1,2,3,4,5],34,12,5,26,2));
+console.log(filterNumbers([1, 2, 3, 4, 5], 34, 12, 5, 26, 2));
+
+
+//! Чтобы реализавать планирование существует два метода:
+// ? setTimeout позволяет вызвать функцию один раз через определённый интервал времени
+// ? setInterval позволяет вызвать функцию регулярно повторяя вызов через определённый интервал времени
+// * setTimeout(функция или код, задержкаб параметр, ...параметр)
+// * setInterval(функция или код, задержкаб параметр, ...параметр)
+
+function TimeName(name, surname) {
+    console.log(`Привет ${surname} ${name}`);
+}
+
+setTimeout(TimeName, 3000, "Andrii", "Asmolovskyi"); // через 3 секунды будет Привет Asmolovskyi Andrii
+
+
+
+// function TimeInterval(name, surname) {
+//     for (let i = 0; i < 11; i++) {
+//         console.log(`Привет ${surname} ${name}`);  
+//     }
+//     return
+// }
+
+// setInterval(TimeInterval, 1000, "Andrii", "Asmolovskyi"); // каждую секунду выведет 10 раз
