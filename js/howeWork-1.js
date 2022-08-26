@@ -1,12 +1,13 @@
-function includes(array, value) {
-  // Change code below this line
-    let result = false;
-    for (const iter of array) {
-        if (iter === value) {
-            result = true;
-            return result;
-        }
-    }
-    return result;
-  // Change code above this line
+const book = {
+  title: "The Last Kingdom",
+  author: "Bernard Cornwell",
+  genres: ["historical prose", "adventure"],
+  rating: 8.38,
+};
+
+for (const key in book) {
+  // Ключ
+  console.log(key);
+  // Значение свойства с таким ключом
+  console.log(book[key]);
 }
