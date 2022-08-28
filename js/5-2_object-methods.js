@@ -46,7 +46,7 @@ console.log(playlist1.getTrackCount()); // покажет актуальное �
 // ! ================= итерация объекта ==========================================
 
 
-// * Получить массив ключей или значений можно с помощью Object
+// ! Получить массив ключей или значений можно с помощью Object
 
 const feedback = {
     good: 5,
@@ -108,7 +108,7 @@ console.log(findFriend(friends, 'Poly')); // Нашли Poly
 // * Создадим новый массив с именами с нашего friends
 
 function createArrayNames(array) {
-    let newArrayNames = [];
+    const newArrayNames = [];
     for (const friend of array) {
         newArrayNames.push(friend.name);
     }
@@ -116,3 +116,39 @@ function createArrayNames(array) {
 }
 
 console.log(createArrayNames(friends)); // ['Mango', 'Kiwi', 'Poly', 'Ajax']
+
+// * Создадим массив с инфой если друг онлайн
+
+function isFriendOnline(array) {
+    const newArrayOnline = [];
+    for (const friend of array) {
+        if (friend.online === true) {
+            newArrayOnline.push(friend);
+        }
+    }
+    return newArrayOnline;
+}
+
+console.log(isFriendOnline(friends)); // вернёт массив из 2-х объектов
+
+
+// * Создадим объект с двумя ключами "online" и "offline" и со значениями в виде друзей
+
+function newNormaliseArray(array) {
+    const newNormArray = { // ? Создали пустой объект с двумя ключами
+        online: [],
+        offline: [],
+    };
+
+    for (const friend of array) { // ? Добавляем имя в объект с нужным ключом
+        if (friend.online) {
+            newNormArray.online.push(friend.name)
+        } else {
+            newNormArray.offline.push(friend.name)
+        }
+    }
+
+    return newNormArray;
+}
+
+console.log(newNormaliseArray(friends));
