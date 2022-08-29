@@ -152,3 +152,28 @@ function newNormaliseArray(array) {
 }
 
 console.log(newNormaliseArray(friends));
+
+
+//! ================concat    spread========================================
+
+
+//* Объединение массивов
+
+const allarray = [1, 2, 3].concat([4, 5, 6], [7, 8, 9]); //! concat
+const allarray1 = [ ...[1, 2, 3],...[4, 5, 6],...[7, 8, 9]]; //! spread
+console.log(allarray); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(allarray1); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// ? Распылим массив [1, 2, 3] с помощью ... всё что есть преобразуется в значения и запишется в один массив
+
+const spreadArray = [12, 31,...[1, 2, 3], 6, 7];
+console.log(spreadArray); //[12, 31, 1, 2, 3, 6, 7]
+
+
+// * Найдём самое маленькое и самое большое число в массиве через распыление поскольку без него фун-ия max,min не работает
+
+const numbersToFind = [1, 34, 67, 234, 78, 93, 234, -23, -67, -456, -3];
+const maxNumber = Math.max(...numbersToFind); //? распылили массив в значения с которыми может работать max,min
+const minNumber = Math.min(...numbersToFind);
+console.log(`maxNumber = ${maxNumber},minNumber = ${minNumber}`); // maxNumber = 234,minNumber = -456
+
