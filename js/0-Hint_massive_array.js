@@ -15,7 +15,8 @@
 // Як швидко очистити масив
 
 // const fruits = ['banana', 'apple', 'orange', 'watermelon', 'apple', 'orange', 'grape', 'apple'];
-// fruits.length = 0;
+// fruits.length = 0; или  
+// fruits = [];
 // console.log(fruits); // поверне []
 
 
