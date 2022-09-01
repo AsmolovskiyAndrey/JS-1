@@ -250,4 +250,53 @@ const [first, , third] = mas; // пропутим 45 поставив пробе
 console.log(first, third); // 12 500
 
 
+//* =========================================== Rest (сбор) ========================================================
 
+const myList2 = {
+    nameList: "My super list",
+    rating: 5,
+    tracks: ['Track - 1', 'Track - 2', 'Track - 3',],
+    trackCount: 3,
+    getNah() {
+        console.log("Ага это метод getNah");
+    },
+}
+
+
+//? достанем только 2-е переменные остальные оставим в объекте restName
+const { nameList: newList, rating, ...restName } = myList2;
+console.log(newList, rating, restName); // My super list 5 {tracks: Array(3), trackCount: 3, getNah: ƒ}
+
+
+//!============================================== Патерн объект настроек ==============================================
+//? Делается если в функцию передаём 3 и более парамтров чтобы не было ...
+
+// function func(name, surname, age, rating) {
+//     console.log(name, surname, age, rating);
+// }
+// func("Andrii", "Asmolovskyi", "39", "4.7"); // Andrii Asmolovskyi 39 4.7
+
+const myInfo = {
+    name: "Andrii",
+    surname: "Asmolovskyi",
+    age: 39,
+    rating: 4.7,
+};
+
+//* Деструктуризация внутри функции
+
+function showPatern(params) {
+    const { name, surname, ...restArray } = params;
+    console.log(name, surname, restArray); // Andrii Asmolovskyi {age: 39, rating: 4.7}
+}
+
+showPatern(myInfo);
+
+
+//* Деструктуризация при объявлении функции
+
+function showPaternIn({ name, surname, ...restArray }) {
+    console.log(name, surname, restArray); // Andrii Asmolovskyi {age: 39, rating: 4.7}
+}
+
+showPaternIn(myInfo);
