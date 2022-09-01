@@ -1,13 +1,7 @@
-const book = {
-  title: "The Last Kingdom",
-  author: "Bernard Cornwell",
-  genres: ["historical prose", "adventure"],
-  rating: 8.38,
-};
+function countTotalSalary(salaries) {
+  let totalSalary = 0;
+  // Change code below this line
 
-for (const key in book) {
-  // Ключ
-  console.log(key);
-  // Значение свойства с таким ключом
-  console.log(book[key]);
+  // Change code above this line
+  return totalSalary;
 }
