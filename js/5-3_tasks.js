@@ -71,3 +71,28 @@ cart.increaseQuantity('apple');
 cart.decreaseQuantity('limon');
 
 console.table(cart.getItems());
+
+
+
+//* Задача 35 index of===========================================
+
+// const bookShelf = {
+//   books: ["Последнее королевство"],
+//   getBooks() {
+//     return this.books;
+//   },
+//   addBook(bookName) {
+//     this.books.push(bookName);
+//   },
+//   removeBook(bookName) {
+    // const bookIndex = this.books.indexOf(bookName);
+    // this.books.splice(bookIndex, 1);
+//   },
+// };
+
+// console.log(bookShelf.getBooks()); // []
+// bookShelf.addBook("Мгла");
+// bookShelf.addBook("Страж снов");
+// console.log(bookShelf.getBooks()); // ["Последнее королевство", "Мгла", "Страж снов"]
+// bookShelf.removeBook("Мгла");
+// console.log(bookShelf.getBooks()); // ["Последнее королевство", "Страж снов"]
