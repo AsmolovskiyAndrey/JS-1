@@ -131,19 +131,19 @@
 // });
 
 //! ======================= Метод map() =====================================================
-// Метод map(callback) используется для трансформации массива. Он вызывает коллбек-функцию для каждого элемента исходного
-// массива, а результат её работы записывает в новый массив, который и будет результатом выполнения метода.
+//todo Метод map(callback) используется для трансформации массива. Он вызывает коллбек-функцию для каждого элемента исходного
+//todo массива, а результат её работы записывает в новый массив, который и будет результатом выполнения метода.
 //* массив.map((element, index, array) => {
 //* Тело коллбек-функции
 //* });
 
-const planets = ["Земля", "Марс", "Венера", "Юпитер"];
+// const planets = ["Земля", "Марс", "Венера", "Юпитер"];
 
-const planetsInUpperCase = planets.map(planet => planet.toUpperCase());
-console.log(planetsInUpperCase); // ['ЗЕМЛЯ', 'МАРС', 'ВЕНЕРА', 'ЮПИТЕР']
+// const planetsInUpperCase = planets.map(planet => planet.toUpperCase());
+// console.log(planetsInUpperCase); // ['ЗЕМЛЯ', 'МАРС', 'ВЕНЕРА', 'ЮПИТЕР']
 
-const planetsInLowerCase = planets.map(planet => planet.toLowerCase());
-console.log(planetsInLowerCase); // ['земля', 'марс', 'венера', 'юпитер']
+// const planetsInLowerCase = planets.map(planet => planet.toLowerCase());
+// console.log(planetsInLowerCase); // ['земля', 'марс', 'венера', 'юпитер']
 
 //? То же мамое без стрелочных функций
 // function toLower(array) {
@@ -153,26 +153,296 @@ console.log(planetsInLowerCase); // ['земля', 'марс', 'венера', '
 // }
 // console.log(toLower(planets)); // ['земля', 'марс', 'венера', 'юпитер']
 
-const asd = ["QWER", "asda"];
-for (let i = 0; i < asd.length; i++) {
-        if (asd[i] === asd[i].toLowerCase()) {
-            asd[i] = asd[i].toUpperCase();
-        } else {
-            asd[i] = asd[i].toLowerCase();
-        };
-};
-console.log(asd);
-
-const planetsChangeCase = planets.map(planet => {
-    for (let i = 0; i < planet.length; i++) {
-        if (planet[i] === planet[i].toLowerCase()) {
-            planet[i] = planet[i].toUpperCase();
-        } else {
-            planet[i] = planet[i].toLowerCase();
-        };
-    };
-});
-console.log(planetsChangeCase); // ['земля', 'марс', 'венера', 'юпитер']
-
 // Оригинальный массив не изменился
-console.log(planets); // ['Земля', 'Марс', 'Венера', 'Юпитер']
+// console.log(planets); // ['Земля', 'Марс', 'Венера', 'Юпитер']
+
+//* Переберём массив с помощью map
+
+// const students = [
+//   { name: "Манго", score: 83 },
+//   { name: "Поли", score: 59 },
+//   { name: "Аякс", score: 37 },
+//   { name: "Киви", score: 94 },
+//   { name: "Хьюстон", score: 64 },
+// ];
+
+// const names = students.map(student => student.name);
+// console.log(names); // ['Манго', 'Поли', 'Аякс', 'Киви', 'Хьюстон']
+
+
+//!=============================== Метод flatMap() =================================================
+//todo Метод flatMap(callback) аналогичен методу map(), но применяется в случаях когда результат это многомерный массив
+//todo который необходимо «разгладить».
+// Он вызывает коллбек-функцию для каждого элемента исходного массива, а результат её работы записывает в новый массив.
+// Отличие от map() в том, что новый массив «разглаживается» на глубину равную единице(одна вложенность).
+// Этот разглаженный массив и есть результат работы flatMap().
+
+// const students = [
+//   { name: "Манго", courses: ["математика", "физика"] },
+//   { name: "Поли", courses: ["информатика", "математика"] },
+//   { name: "Киви", courses: ["физика", "биология"] },
+// ];
+
+// console.log(students.map(student => student.courses));
+// // [['математика', 'физика'], ['информатика', 'математика'], ['физика', 'биология']]
+
+// console.log(students.flatMap(student => student.courses));
+// // ['математика', 'физика', 'информатика', 'математика', 'физика', 'биология'];
+
+//!=============================== Метод filter() ==================================================
+//todo Метод filter(callback) используется для единственной операции - фильтрации массива,
+//todo то есть когда необходимо выбрать более одного элемента из коллекции по какому - то критерию.
+//* Если коллбек вернул true элемент добавляется в возвращаемый массив.
+//* Если коллбек вернул false элемент не добавляется в возвращаемый массив.
+//* Если ни один элемент не удовлетворил условию, возвращает пустой массив.
+
+// const values = [51, -3, 27, 21, -68, 42, -37];
+
+// const positiveValues = values.filter(value => value >= 0);
+// console.log(positiveValues); // [51, 27, 21, 42]
+
+// const negativeValues = values.filter(value => value < 0);
+// console.log(negativeValues); // [-3, -68, -37]
+
+// const bigValues = values.filter(value => value > 1000);
+// console.log(bigValues); // []
+
+// // Оригинальный массив не изменился
+// console.log(values); // [51, -3, 27, 21, -68, 42, -37]
+
+//* Фильтрация уникальных элементов
+// Используя метод filter() можно выполнить фильтрацию массива так, что в нём останутся только уникальные элементы.
+// Этот приём работает только с массивом примитивных значений - не объектов.
+
+// const students = [
+//   { name: "Манго", courses: ["математика", "физика"] },
+//   { name: "Поли", courses: ["информатика", "математика"] },
+//   { name: "Киви", courses: ["физика", "биология"] },
+// ];
+
+// const allCourses = students.flatMap(student => student.courses);
+// // ['математика', 'физика', 'информатика', 'математика', 'физика', 'биология'];
+
+// const uniqueCourses = allCourses.filter(
+//   (course, index, array) => array.indexOf(course) === index
+// );
+// Используя array.indexOf(course) выполняем поиск первого совпадения текущего элемента course и получаем его индекс
+// в оригинальном массиве всех курсов.В параметре index хранится индекс текущего элемента course при переборе массива
+// методом filter.
+
+// Если результат indexOf() и значение index равны - это уникальный элемент, потому что это первый раз когда такое значение
+// встречается в массиве и на текущей итерации фильтр обрабатывает именно его.
+
+// console.log(uniqueCourses); //['математика', 'физика', 'информатика', 'биология']
+
+
+//*================== Filter c Массивом объектов ============================================
+// При работе с массивом объектов выполняется фильтрация по значению какого-то свойства.
+// В результате получается новый массив отфильтрованных объектов.
+
+// const LOW_SCORE = 50;
+// const HIGH_SCORE = 80;
+// const students = [
+//   { name: "Манго", score: 83 },
+//   { name: "Поли", score: 59 },
+//   { name: "Аякс", score: 37 },
+//   { name: "Киви", score: 94 },
+//   { name: "Хьюстон", score: 64 },
+// ];
+
+// const best = students.filter(student => student.score >= HIGH_SCORE);
+// console.log(best); // Массив объектов с именами Манго и Киви
+
+// const worst = students.filter(student => student.score < LOW_SCORE);
+// console.log(worst); // Массив с одним объектом Аякс
+
+
+// const middle = students.filter(midStudents => midStudents.score >= LOW_SCORE && midStudents.score <= HIGH_SCORE);
+// console.log(middle); // Массив объектов с именами Поли и Хьюстон
+
+//? В коллбек-функции удобно деструктуризировать свойства объекта предыдущего решения
+// const average = students.filter(
+//   ({ score }) => score >= LOW_SCORE && score < HIGH_SCORE
+// );
+// console.log(average); // Массив объектов с именами Поли и Хьюстон
+
+
+//!================================== Метод find() =================================================================
+//todo Если метод filter(callback) используется для поиска всех элементов удовлетворяющим условию, то метод find(callback)
+//todo позволяет найти и вернуть первый подходящий элемент, после чего перебор массива прекращается.
+//todo То есть он ищет до первого совпадения.
+
+// const colorPickerOptions = [
+//   { label: "red", color: "#F44336" },
+//   { label: "green", color: "#4CAF50" },
+//   { label: "blue", color: "#2196F3" },
+//   { label: "pink", color: "#E91E63" },
+//   { label: "indigo", color: "#3F51B5" },
+// ];
+
+// console.log(colorPickerOptions.find(option => option.label === "blue")); // { label: 'blue', color: '#2196F3' }
+// console.log(colorPickerOptions.find(({ label }) => label === "pink")); // деструктуризировал { label: 'pink', color: '#E91E63' }
+// console.log(colorPickerOptions.find(option => option.label === "white")); // undefined
+
+
+//!================================== Метод findIndex() ===============================================================
+//todo Метод findIndex(callback) это современная замена методу indexOf(). Позволяет выполнять поиск по более сложным
+//todo условиям чем просто равенство. Используется как для поиска в массиве примитивов, так и в массиве обьектов.
+// массив.findIndex((element, index, array) => {
+// Тело коллбек-функции
+// });
+
+// Возвращает индекс первого элемента удовлетворяющего условию, то есть когда коллбек возвращает true.
+// Если ни один элемент не подошёл, то есть для всех элементов коллбек вернул false, метод возвращает -1.
+
+// const colorPickerOptions = [
+//     { label: "red", color: "#F44336" },
+//     { label: "green", color: "#4CAF50" },
+//     { label: "blue", color: "#2196F3" },
+//     { label: "pink", color: "#E91E63" },
+//     { label: "indigo", color: "#3F51B5" },
+//     { label: "blue", color: "#newColor" },
+// ];
+
+// console.log(colorPickerOptions.findIndex(option => option.label === "blue")); // 2 первый !!!!
+// colorPickerOptions.findIndex(option => option.label === "pink"); // 3
+// colorPickerOptions.findIndex(option => option.label === "white"); // -1
+
+
+//!=============================== Методы every() и some() ==========================================================
+//!  Метод every()
+//todo Проверяет проходят ли все элементы массива тест предоставляемый коллбек-функцией. Возвращает true или false.
+// Возвращает true если все элементы массива удовлетворяют условию.
+// Возвращает false если хотябы один элемент массив не удовлетворяет условию.
+// Перебор массива прекращается если коллбек возвращает false.
+
+// // Все элементы больше либо равны нулю? - да
+// const numbers = [1, 2, 3, 4, 5];
+// numbers.every(value => value >= 0); // true
+
+// // Все элементы больше либо равны нулю? - нет
+// [1, 2, 3, -10, 4, 5].every(value => value >= 0); // false
+
+//!  Метод some()
+//todo Проверяет проходит ли хотя бы один элемент массива тест предоставляемый коллбек-функцией. Возвращает true или false.
+// Возвращает true если хотя бы один элемент массива удовлетворяет условию.
+// Возвращает false если ни один элемент массив не удовлетворяет условию.
+// Перебор массива прекращается если коллбек возвращает true.
+
+// // Есть хотя бы один элемент больше либо равный нулю? - да
+// [1, 2, 3, 4, 5].some(value => value >= 0); // true
+
+// // Есть хотя бы один элемент больше либо равный нулю? - да
+// [-7, -20, 3, -10, -14].some(value => value >= 0); // true
+
+// // Есть хотя бы один элемент меньше нуля? - нет
+// [1, 2, 3, 4, 5].some(value => value < 0); // false
+
+// // Есть хотя бы один элемент меньше нуля? - да
+// [1, 2, 3, -10, 4, 5].some(value => value < 0); // true
+
+//? Every , some с массивом объектов======================================
+
+// const fruits = [
+//   { name: "apples", amount: 100 },
+//   { name: "bananas", amount: 0 },
+//   { name: "grapes", amount: 50 },
+// ];
+
+// // every вернет true только если всех фруктов будет больше чем 0 штук
+// const allAvailable = fruits.every(fruit => fruit.amount > 0); // false
+
+// // some вернет true если хотябы одного фрукта будет больше чем 0 штук
+// const anyAvailable = fruits.some(fruits => fruits.amount > 0); // true
+
+
+
+//!======================= Метод reduce() =========================================================
+//todo Метод reduce(callback, initialValue) используется для последовательной обработки каждого элемента массива
+//todo с сохранением промежуточного результата, как аккумулятор.
+//* массив.reduce((previousValue, element, index, array) => {
+//* Тело коллбек-функции
+//* }, initialValue);
+
+// Не изменяет оригинальный массив.
+// Поэлементно перебирает оригинальный массив.
+// Возвращает что угодно.
+// Делает что угодно.
+
+// Легче всего представить его работу на примере подсчёта суммы элементов массива.
+
+// const total = [2, 7, 3, 14, 6].reduce((previousValue, number) => {
+//   return previousValue + number;
+// }, 100);
+
+// console.log(total); // 132
+
+// Первый параметр коллбек - функции(previousValue) это аккумулятор, то есть промежуточный результат.
+// Значение которое вернёт коллбек - функция на текущей итерации, будет значением этого параметра на следующей.
+// Вторым аргументом для reduce() можно передать необязательное начальное значение аккумулятора - параметр initialValue.(100 у нас)
+
+// # Вначале метод reduce() создаёт внутреннюю переменную-аккумулятор и
+// # присваивает ей значение параметра initialValue или первого элемента
+// # перебираемого массива, если initialValue не задан.
+// previousValue = 0 (100 в нашем случае поскольку initialValue = 100)
+
+// # Далее коллбек-функция вызывается для каждого элемента массива. Текущее значение
+// # параметра previousValue это то, что вернула коллбек-функция на прошлой итерации.
+// Итерация 1 -> previousValue = 100 -> number = 2 -> return 0 + 2 -> return 2
+// Итерация 2 -> previousValue = 102 -> number = 7 -> return 2 + 7 -> return 9
+// Итерация 3 -> previousValue = 109 -> number = 3 -> return 9 + 3 -> return 12
+// Итерация 4 -> previousValue = 112 -> number = 14 -> return 12 + 14 -> return 26
+// Итерация 5 -> previousValue = 126 -> number = 6 -> return 26 + 6 -> return 32
+
+// # После того как весь массив перебран, метод reduce() возвращает значение аккумулятора.
+// Результат - 132
+
+//?  Метод reduce() с массивом объекта ======================================
+//todo При работе с массивом объектов выполняется редуцирование по значению какого-то свойства.
+//todo Например, есть массив студентов с баллами за тест.Необходимо получить средний бал.
+
+// const students = [
+//   { name: "Манго", score: 83 },
+//   { name: "Поли", score: 59 },
+//   { name: "Аякс", score: 37 },
+//   { name: "Киви", score: 94 },
+//   { name: "Хьюстон", score: 64 },
+// ];
+
+// // Название аккумулятора может быть произвольным, это просто параметр функции
+// const totalScore = students.reduce((total, student) => {
+//   return total + student.score;
+// }, 0);
+
+// const averageScore = totalScore / students.length;
+// console.log(averageScore); //67.4
+
+//? Продвинутый reduce ===========================================================
+// Допустим у нас есть следующая задача: из массива постов твиттера отдельного пользователя необходимо посчитать сумму всех лайков.
+// Можно перебрать циклом for или forEach, каждое из этих решений потребует дополнительного кода.А можно использовать reduce.
+
+
+//todo Variant 1
+// const tweets = [
+//   { id: "000", likes: 5, tags: ["js", "nodejs"] },
+//   { id: "001", likes: 2, tags: ["html", "css"] },
+//   { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
+//   { id: "003", likes: 8, tags: ["css", "react"] },
+//   { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+// ];
+
+// // Пройдем по всем элементам коллекции и прибавим значения свойства likes
+// // к аккумулятору, начальное значение которого укажем 0.
+// const likes = tweets.reduce((totalLikes, tweet) => totalLikes + tweet.likes, 0);
+
+// console.log(likes); // 32
+
+// // Наверное подсчет лайков не одиночная операция, поэтому напишем функцию
+// // для подсчета лайков из коллекции
+// const countLikes = tweets => {
+//   return tweets.reduce((totalLikes, tweet) => totalLikes + tweet.likes, 0);
+// };
+
+// console.log(countLikes(tweets)); // 32
+
+//todo Variant 2
