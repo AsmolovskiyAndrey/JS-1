@@ -26,9 +26,9 @@
 // Аргументы коллбек-функции это значение текущего элемента element, его индекс index и сам исходный массив array.
 // Объявлять можно только те параметры которые нужны, чаще всего это элемент, главное не забывать про их порядок.
 
-// const numbers = [5, 10, 15, 20, 25];
+const numbers = [5, 10, 15, 20, 25];
 
-// // Объявление функции
+// Объявление функции
 // numbers.forEach(function (value, index) {
 //     console.log(`Array numbers ${index} his value is ${value}`);
 // });
@@ -159,16 +159,24 @@
 //* Переберём массив с помощью map
 
 // const students = [
-//   { name: "Манго", score: 83 },
-//   { name: "Поли", score: 59 },
-//   { name: "Аякс", score: 37 },
-//   { name: "Киви", score: 94 },
-//   { name: "Хьюстон", score: 64 },
+//   { name: "Манго", score: 83, points: 54 },
+//   { name: "Поли", score: 59, points: 23 },
+//   { name: "Аякс", score: 37, points: 79 },
+//   { name: "Киви", score: 94, points: 92 },
+//   { name: "Хьюстон", score: 64, points: 36 },
 // ];
 
 // const names = students.map(student => student.name);
 // console.log(names); // ['Манго', 'Поли', 'Аякс', 'Киви', 'Хьюстон']
 
+// //? заберём с массива объектов несколько свойств
+
+// const fewValues = students.map(({ name, points }) => ({ name, points }));
+// console.log(fewValues); // массив объектов в котором name и points
+
+//? Увеличим значение points в новом массиве на 10%
+// const newPointsStudents = students.map((student) => ({ ...student, points: Math.round(student.points * 1.1) }) );
+// console.log(newPointsStudents);
 
 //!=============================== Метод flatMap() =================================================
 //todo Метод flatMap(callback) аналогичен методу map(), но применяется в случаях когда результат это многомерный массив
