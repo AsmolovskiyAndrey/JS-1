@@ -379,10 +379,7 @@ const numbers = [5, 10, 15, 20, 25];
 
 // Легче всего представить его работу на примере подсчёта суммы элементов массива.
 
-// const total = [2, 7, 3, 14, 6].reduce((previousValue, number) => {
-//   return previousValue + number;
-// }, 100);
-
+// const total = [2, 7, 3, 14, 6].reduce((previousValue, number) =>  previousValue + number , 100);
 // console.log(total); // 132
 
 // Первый параметр коллбек - функции(previousValue) это аккумулятор, то есть промежуточный результат.
@@ -418,12 +415,29 @@ const numbers = [5, 10, 15, 20, 25];
 // ];
 
 // // Название аккумулятора может быть произвольным, это просто параметр функции
-// const totalScore = students.reduce((total, student) => {
-//   return total + student.score;
-// }, 0);
-
+// const totalScore = students.reduce((total, student) => total + student.score, 0);
 // const averageScore = totalScore / students.length;
 // console.log(averageScore); //67.4
+
+// //* или так с помощью Object.value который соберёт значения в массив (если он одномерный)
+// const salary = {
+//   mango: 100,
+//   poly: 130,
+//   andrii: 300,
+// }
+// const totalScore1 = Object.values(salary).reduce((total, price) => total + price, 0);
+// console.log(totalScore1); // 530
+
+//* Посчитаем корзину товаров с помощью reduce
+
+// const cart = [
+//   { label: "Apples", price: 100, quantity: 2 },
+//   { label: "Bananas", price: 120, quantity: 3 },
+//   { label: "Lemons", price: 200, quantity: 4 },
+// ];
+// const totalPrice = cart.reduce((total, {price, quantity}) => total + price * quantity, 0); //* price и quantity деструктуризировали
+// console.log(totalPrice); // 1360
+
 
 //? Продвинутый reduce ===========================================================
 // Допустим у нас есть следующая задача: из массива постов твиттера отдельного пользователя необходимо посчитать сумму всех лайков.
@@ -439,14 +453,14 @@ const numbers = [5, 10, 15, 20, 25];
 //   { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
 // ];
 
-// // Пройдем по всем элементам коллекции и прибавим значения свойства likes
-// // к аккумулятору, начальное значение которого укажем 0.
+// Пройдем по всем элементам коллекции и прибавим значения свойства likes
+// к аккумулятору, начальное значение которого укажем 0.
 // const likes = tweets.reduce((totalLikes, tweet) => totalLikes + tweet.likes, 0);
 
 // console.log(likes); // 32
 
-// // Наверное подсчет лайков не одиночная операция, поэтому напишем функцию
-// // для подсчета лайков из коллекции
+// Наверное подсчет лайков не одиночная операция, поэтому напишем функцию
+// для подсчета лайков из коллекции
 // const countLikes = tweets => {
 //   return tweets.reduce((totalLikes, tweet) => totalLikes + tweet.likes, 0);
 // };
@@ -462,9 +476,9 @@ const numbers = [5, 10, 15, 20, 25];
 //   { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
 // ];
 
-// // Пройдем по всем элементам коллекции и добавим значения свойства tags
-// // к аккумулятору, начальное значение которого укажем пустым массивом [].
-// // На каждой итерации пушим в аккумулятор все элементы tweet.tags и возвращаем его.
+// Пройдем по всем элементам коллекции и добавим значения свойства tags
+// к аккумулятору, начальное значение которого укажем пустым массивом [].
+// На каждой итерации пушим в аккумулятор все элементы tweet.tags и возвращаем его.
 // const tags = tweets.reduce((allTags, tweet) => {
 //   allTags.push(...tweet.tags);
 
@@ -473,8 +487,8 @@ const numbers = [5, 10, 15, 20, 25];
 
 // console.log(tags);
 
-// // Наверное сбор тегов не одиночная операция, поэтому напишем функцию
-// // для сбора тегов из коллекции
+// Наверное сбор тегов не одиночная операция, поэтому напишем функцию
+// для сбора тегов из коллекции
 // const getTags = tweets =>
 //   tweets.reduce((allTags, tweet) => {
 //     allTags.push(...tweet.tags);
@@ -494,36 +508,36 @@ const numbers = [5, 10, 15, 20, 25];
 //   { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
 // ];
 
-// const getTags = tweets =>
-//   tweets.reduce((allTags, tweet) => {
+// const getTags = tweets.reduce((allTags, tweet) => {
 //     allTags.push(...tweet.tags);
 
 //     return allTags;
 //   }, []);
 
-// const tags = getTags(tweets); // ['js', 'nodejs', 'html', 'css', 'html', 'js', 'nodejs', 'css', 'react', 'js', 'nodejs', 'react']
+// console.log(getTags); // ['js', 'nodejs', 'html', 'css', 'html', 'js', 'nodejs', 'css', 'react', 'js', 'nodejs', 'react']
 
-// // Вынесем callback-функцию отдельно, а в reducе передадим ссылку на нее.
-// // Это стандартная практика если callback-функция довольно большая.
+// Если в объекте-аккумуляторе acc нету своего свойства с ключем tag,
+// то создаем его и записывает ему значение 0.
+// В противном случае увеличиваем значение на 1.
+// Начальное значение аккумулятора это пустой объект {}
 
-// // Если в объекте-аккумуляторе acc нету своего свойства с ключем tag,
-// // то создаем его и записывает ему значение 0.
-// // В противном случае увеличиваем значение на 1.
-// const getTagStats = (acc, tag) => {
-//   if (!acc.hasOwnProperty(tag)) {
-//     acc[tag] = 0;
-//   }
+// const countTags = getTags.reduce((acc, tag) => {
+  //   if (!acc.hasOwnProperty(tag)) {
+  //     acc[tag] = 0;
+  //   }
 
-//   acc[tag] += 1;
+  //   acc[tag] += 1;
 
-//   return acc;
-// };
+  //   return acc;
+  // }, {});
+  //* или так распыляем acc и сравниваем через тернарник значение === acc[значение]
+//   return {
+//     ...acc,
+//     [tag]: acc[tag] ? acc[tag] + 1 : 1,
+//   };
+// }, {});
 
-// // Начальное значение аккумулятора это пустой объект {}
-// const countTags = tags => tags.reduce(getTagStats, {});
-
-// const tagCount = countTags(tags);
-// console.log(tagCount);
+// console.log(countTags); // {js: 3, nodejs: 3, html: 2, css: 2, react: 2}
 
 
 //! =========================================== Метод sort() ============================================================
