@@ -193,26 +193,59 @@
 //?============== Приватные данные и функции =========================================================
 
 
-function salaryManagerFactory(employeeName, baseSalary = 0) {
-    let salary = baseSalary;
-    return {
-        raise(amount) {
-            salary += amount;
-        },
-        lower(amount) {
-            salary -= amount;
-        },
-        current() {
-            return `Текущая зарплата ${employeeName} - ${salary}`;
-        },
-    };
-};
+// function salaryManagerFactory(employeeName, baseSalary = 0) {
+//     let salary = baseSalary;
+//     return {
+//         raise(amount) {
+//             salary += amount;
+//         },
+//         lower(amount) {
+//             salary -= amount;
+//         },
+//         current() {
+//             return `Текущая зарплата ${employeeName} - ${salary}`;
+//         },
+//     };
+// };
 
-const salaryManager = salaryManagerFactory('Andrii', 6000); //* закрыли в замыкании зп (её внешне не изменить) 
+// const salaryManager = salaryManagerFactory('Andrii', 6000); //* закрыли в замыкании зп (её внешне не изменить)
 
-console.log(salaryManager.current());
+// console.log(salaryManager.current());
 
-salaryManager.raise(1300); //* можно изменить через метод
+// salaryManager.raise(1300); //* можно изменить через метод
 
-console.log(salaryManager.current()); //Текущая зарплата Andrii - 7300
+// console.log(salaryManager.current()); //Текущая зарплата Andrii - 7300
+
+
+//?================== Задача 4=================================================
+
+// function processCall(recipient, onAvailable, onNotAvailable) {
+//   // Имитируем доступеность абонента случайным числом
+//   const isRecipientAvailable = Math.random() > 0.5;
+
+//   if (!isRecipientAvailable) {
+//     onNotAvailable(recipient);
+//     return;
+//   }
+
+//   onAvailable(recipient);
+// }
+
+// function takeCall(name) {
+//   console.log(`Соединяем с ${name}, ожидайте...`);
+//   // Логика принятия звонка
+// }
+
+// function activateAnsweringMachine(name) {
+//   console.log(`Абонент ${name} недоступен, оставьте сообщение.`);
+//   // Логика активации автоответчика
+// }
+
+// function leaveHoloMessage(name) {
+//   console.log(`Абонент ${name} недоступен, записываем голограмму.`);
+//   // Логика записи голограммы
+// }
+
+// processCall("Mango", takeCall, activateAnsweringMachine);
+// processCall("Poly", takeCall, leaveHoloMessage);
 

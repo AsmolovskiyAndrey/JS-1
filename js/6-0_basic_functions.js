@@ -762,6 +762,7 @@ const numbers = [5, 10, 15, 20, 25];
 //todo===============================Библиотека  LODASCH ===============================================================
 //! +++++++++++++++++++++++++++++++++Библиотека  LODASCH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //todo===============================Библиотека  LODASCH ===============================================================
+{/* <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script> подключить с помощью скрипта */}
 
 
 
@@ -834,7 +835,7 @@ console.dir(_); //? Покажет все методы LODASCH
 //? camelCase() , capitalize() , kebabCase() , lowerCase() , upperCase() -приведёт к нужному порядку
 //? уберёт всё лишнее из строки оставив только буквы и цифры
 
-console.log(_.camelCase('New-main Array_ 123')); // newMainArray123
-console.log(_.capitalize('New-main Array_ 123')); // New-main array_ 123
-console.log(_.kebabCase('New-main Array_ 123')); // new-main-array-123
-console.log(_.lowerCase('New-main Array_ 123')); // new main array 123
+// console.log(_.camelCase('New-main Array_ 123')); // newMainArray123
+// console.log(_.capitalize('New-main Array_ 123')); // New-main array_ 123
+// console.log(_.kebabCase('New-main Array_ 123')); // new-main-array-123
+// console.log(_.lowerCase('New-main Array_ 123')); // new main array 123
