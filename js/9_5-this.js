@@ -1,4 +1,8 @@
 //!================= this =========================================================
+//todo Контекст THIS :
+//todo --Где и как была объявлена функция НЕ ИМЕЕТ НИКАКОГО ЗНАЧЕНИЯ на контекст
+//todo -- Контекс определяется В МОМЕНТ ВЫЗОВА функции, если он не привязан явно
+
 // Контекст в JavaScript похож на контекст в предложении:
 // Петя бежит быстро, потому что Петя пытается поймать поезд.
 // Петя бежит быстро, потому что он(this) пытается поймать поезд.
@@ -239,4 +243,29 @@
 // makeMessage(customer.getFullName.bind(customer)); // Обрабатываем заявку от Jacob Mercer.
 
 
+//! ================== Сделаем счётчик с прявязкой через bind =========================================
+
+const incrButton = document.querySelector('.js-increment'); // вернёт ссылку на место в коде
+const decrButton = document.querySelector('.js-decrement'); // вернёт ссылку на место в коде
+const valueEl = document.querySelector('.js-value'); // вернёт ссылку на место в коде
+console.log(valueEl); // <button class="js-decrement">Увеличить</button>
+
+const counter = {
+    value: 0,
+    decrement() {
+        this.value -= 1;
+    },
+    increment() {
+        this.value += 1;
+    },
+};
+
+incrButton.addEventListener('click', function () {
+    counter.increment();
+    valueEl.textContent = counter.value;
+});
+decrButton.addEventListener('click', function () {
+    counter.decrement();
+    valueEl.textContent = counter.value;
+});
 
