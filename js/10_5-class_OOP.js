@@ -184,6 +184,38 @@
 // console.log(poly); // { name: "Поли", email: "poly@mail.com" }
 
 
+//todo ============== Пример создания класа от Репеты с пояснением =========================================
+
+
+const Car = function ({ brand, model, price } = {}) { //* принимает параметры (деструктуризированные) и по умолчанию {}
+    //* 2) Функция вызывается в контексте созданного объекта, т.е. в this записывается ссылка на него
+
+    this.brand = brand;
+    this.model = model;
+    this.price = price;
+
+    //* 4) Ссылка на объект вовращается в место вызова new Car
+}
+
+//* прототип который сделан у Car для изменения цены (доступен у всех ЭК) . Лучше методы делать не внутри класа а в prototype (без дублирования)
+Car.prototype.changePrice = function (newPrice) { 
+    this.price = newPrice;
+};
+
+//* 1) Если функция вызывается через new , создаётся пустой объект (ЭК) который мы наполняем
+const myCar = new Car({
+    brand: 'Audi',
+    model: 'Q7',
+    price: 60000,
+});
+
+const myCar2 = new Car({ brand: 'BMW', model: 'X6', price: 70000 }); // новый ЭК
+const myCar3 = new Car({ brand: 'BMW', model: 'X3', price: 35000 }); // новый ЭК
+
+console.log(myCar2); // Car {brand: 'BMW', model: 'X6', price: 70000}
+myCar2.changePrice(85000); //* изменили цену через prototype класа Car
+console.log(myCar2); // Car {brand: 'BMW', model: 'X6', price: 85000}
+
 //? Методы класса ===================
 
 // Для работы со свойствами будущего экземпляра используются методы класса - функции которые будут доступны экземпляру в его прототипе.

@@ -243,7 +243,7 @@
 // makeMessage(customer.getFullName.bind(customer)); // Обрабатываем заявку от Jacob Mercer.
 
 
-//! ================== Сделаем счётчик с прявязкой через bind =========================================
+//! ================== Сделаем счётчик с прявязкой =========================================
 
 const incrButton = document.querySelector('.js-increment'); // вернёт ссылку на место в коде
 const decrButton = document.querySelector('.js-decrement'); // вернёт ссылку на место в коде
