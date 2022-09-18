@@ -259,4 +259,330 @@ console.log(closeBtn.dataset.action); // "close" */}
 // });
 
 //? ================================================ Создание и удаление элементов ==========================================
+// DOM API позволяет не только выбирать или изменять уже существующие, но и удалять, а так же создавать новые элементы, после чего добавлять их в документ.
 
+//todo ============ Создание =======================
+//* document.createElement(tagName);
+// Создает элемент с именем tagName и возвращает ссылку на него как результат своего выполнения. tagName - это строка, указывающая тип создаваемого элемента. Элемент создается в памяти, в DOM его еще нет.
+
+// const heading = document.createElement("h1");
+// console.log(heading); // <h1></h1>
+
+// heading.textContent = "This is a heading";
+// console.log(heading); // <h1>This is a heading</h1>
+
+// const image = document.createElement("img");
+// image.src = "https://placeimg.com/640/480/nature";
+// image.alt = "Nature";
+// console.log(image); // <img src="https://placeimg.com/640/480/nature" alt="Nature" />
+
+//todo ============ Добавление =======================
+
+// Чтобы созданный элемент был отображен на странице, его необходимо добавить к уже существующему элементу в DOM - дереве.
+// Допустим, что добавляем в некий элемент element, для этого есть методы.
+
+//* element.append(el1, el2, ...) - добавляет один или несколько элементов после всех детей элемента element.
+//* element.prepend(el1, el2, ...) - добавляет один или несколько элементов перед всеми детьми элемента element.
+//* element.after(el1, el2, ...) - добавляет один или несколько элементов после элемента element.
+//* element.before(el1, el2, ...) - добавляет один или несколько элементов перед элементом element.
+// Во всех этих методах, el это элементы или строки, в любом сочетании и количестве. Строки добавляются как текстовые узлы.
+
+//=============================== HTML + JS =========================================
+/* <div class="container">
+  <ul class="usernames">
+    <li>Mango</li>
+  </ul>
+</div>
+
+const list = document.querySelector(".usernames");
+
+// Adds an item to the end of the list
+const lastItem = document.createElement("li");
+lastItem.textContent = "Poly";
+list.append(lastItem);
+
+// Adds an item to the beginning of the list
+const firstItem = document.createElement("li");
+firstItem.textContent = "Ajax";
+list.prepend(firstItem);
+
+// Adds a title before the list
+const title = document.createElement("h2");
+title.textContent = "USERNAMES";
+list.before(title);
+
+// Adds a paragraph after the list
+const text = document.createElement("p");
+text.textContent =
+  "Lorem 10";
+list.after(text); */
+//=======================================================================================
+
+
+//todo ================ Удаление =====================================
+
+//* elem.remove();
+// Для того, чтобы удалить элемент используется метод remove().
+// Он вызывается на самом элементе elem, который необходимо удалить
+
+//=============================== HTML + JS =======================================
+{/* <article class="article">
+  <h2 class="title">Article title</h2>
+  <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ipsa quibusdam! Praesentium accusantium fugiat distinctio quidem minima fugit eos, veniam, nam laboriosam deleniti nisi qui neque explicabo perspiciatis, consectetur non.</p>
+<a class="link" href="">Read more</a>
+</article>
+
+const text = document.querySelector('.text');
+text.remove(); */}
+//================================================================================
+
+
+//! =============================== Свойство innerHTML ================================
+
+//todo ============= Чтение
+// Свойство innerHTML хранит содержимое элемента, включая теги, в виде строки.
+// Возвращаемое значение это всегда валидный HTML - код.
+
+//=============================== HTML + JS =======================================
+{/* <article class="article">
+  <h2 class="title">Article title</h2>
+  <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ipsa quibusdam! <strong>Praesentium</strong> accusantium fugiat distinctio quidem minima fugit eos, veniam, nam laboriosam deleniti nisi qui neque explicabo perspiciatis, consectetur non.</p>
+  <a class="link" href="">Read more</a>
+</article>
+
+const article = document.querySelector(".article");
+console.log(article.innerHTML);
+
+const title = document.querySelector(".article .title");
+console.log(title.innerHTML);
+
+const text = document.querySelector(".article .text");
+console.log(text.innerHTML);
+
+const link = document.querySelector(".article .link");
+console.log(link.innerHTML); */}
+//==============================================================================
+
+//todo Изменение
+// Свойство innerHTML доступно как для чтения, так и для записи.Если записать в него строку с HTML - тегами,
+// то браузер во время парсинга строки превратит их в валидные элементы и добавит в DOM - дерево.
+
+//=============================== HTML + JS =======================================
+{/* <article class="article">
+  <h2 class="title">Article title</h2>
+  <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ipsa quibusdam! <strong>Praesentium</strong> accusantium fugiat distinctio quidem minima fugit eos, veniam, nam laboriosam deleniti nisi qui neque explicabo perspiciatis, consectetur non.</p>
+  <a class="link" href="">Read more</a>
+</article>
+
+body {
+  margin: 16px;
+}
+
+.accent {
+  color: tomato;
+  text-decoration: underline;
+}
+
+const title = document.querySelector(".article .title");
+title.innerHTML = 'New and <span class="accent">improved</span> title'; */}
+//================================================================================
+// ИНТЕРЕСНО
+// Если в свойство innerHTML записать пустую строку, то содержимое элемента будет очищено.Это простой и быстрый способ удаления всего содержимого.
+
+// При таком подходе, в отличии от document.createElement(), мы не получаем ссылку на созданный DOM - элемент.
+// Это первый шаг на пути к шаблонизации - создания большого количества однотипной разметки с разными данными по заранее определённому шаблону
+// Например, как в списке товаров интернет магазина и т.п.
+
+// Однотипная(шаблонная) разметка создается из массива данных.
+// Приём заключается в переборе этого массива и составлении одной строки с HTML тегами,
+// которую потом записываем в innerHTML элемента.
+
+//=============================== HTML + JS =======================================
+{/* <section>
+  <h2>Popular technologies</h2>
+  <ul class="list"></ul>
+</section>
+========================================
+body {
+  padding: 16px;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.list-item {
+  padding: 8px;
+  border-width: 2px;
+  border-style: dashed;
+}
+
+.list-item:nth-child(even) {
+  border-color: tomato;
+}
+
+.list-item:nth-child(odd) {
+  border-color: blueviolet;
+}
+
+.list-item:not(:last-child) {
+  margin-bottom: 8px;
+}
+==========================================
+const technologies = ["HTML", "CSS", "JavaScript", "React", "Node"];
+const list = document.querySelector(".list");
+
+const markup = technologies
+  .map((technology) => `<li class="list-item">${technology}</li>`)
+  .join("");
+
+// Check the console, you'll see a single string with HTML tags
+console.log(markup);
+
+// Adding all the markup in one operation
+list.innerHTML = markup;
+======================================================================================== */}
+
+// todo =================== Добавление ================
+// Изменение elem.innerHTML полностью удалит и пересоздаст всех потомков элемента elem.
+// Если элемент изначально не пустой, то будут дополнительные затраты на сериализацию уже существующей разметки, а это плохо.
+
+//=============================== HTML + JS =======================================
+{/* <article class="article">
+  <h2>Article title</h2>
+</article>
+// ===============================
+body {
+  padding: 16px;
+}
+
+.article {
+  max-width: 320px;
+}
+
+.article-text {
+  color: tomato;
+}
+// ===============================
+const article = document.querySelector(".article");
+const htmlString = `<p class="article-text">Nullam quis ante. Vestibulum dapibus nunc ac augue. In consectetuer turpis ut velit.</p>
+   <a class="link" href="#">Read more...</a>`;
+
+// Replace += with = operator. See the difference? 
+// Article title is lost because we overwrite element content.
+article.innerHTML += htmlString; */}
+// =================================================================================
+// ИНТЕРЕСНО
+// Используйте свойство elem.innerHTML для добавления только в случае когда элемент elem пустой или если надо полностью заменить его содержимое.
+
+
+//! ================================== Метод insertAdjacentHTML() =====================
+// Современный метод для добавления строки с HTML - тегами до, после или внутрь элемента.
+// Решает проблему innerHTML с повторной сериализацией содержимого элемента при добавлении разметки к уже существующей.
+
+//* elem.insertAdjacentHTML(position, string);
+
+// Аргумент position - это строка, позиция относительно элемента elem.
+// Принимает одно из четырёх значений.
+//* "beforebegin" - перед elem
+//* "afterbegin" - внутри elem, перед всеми детьми
+//* "beforeend" - внутри elem, после всех детей
+//* "afterend" - после elem
+
+
+//=============================== HTML + JS =======================================
+{/* <ul class="list">
+  <li class="list-item">HTML</li>
+  <li class="list-item">CSS</li>
+  <li class="list-item">JavaScript</li>
+</ul>
+// =======================================================
+body {
+  padding: 16px;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-width: 2px;
+  border-style: dashed;
+}
+
+.list-item.new::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.list-item:nth-child(even) {
+  border-color: tomato;
+}
+
+.list-item:nth-child(odd) {
+  border-color: blueviolet;
+}
+
+.list-item:not(:last-child) {
+  margin-bottom: 8px;
+}
+// ===================================================
+const list = document.querySelector(".list");
+
+const newTechnologies = ["React", "TypeScript", "Node.js"];
+const markup = newTechnologies
+  .map((technology) => `<li class="list-item new">${technology}</li>`)
+  .join("");
+
+list.insertAdjacentHTML("beforeend", markup);
+list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>"); */}
+// ==============================================================================================
+
+// ИНТЕРЕСНО
+// "beforebegin" и "afterend" работают только в том случае, если elem уже находится в DOM-дереве.
+
+
+
+//! ================================ Подключение скриптов ========================
+
+// Загрузка и выполнение скрипта указанного в теге < script > без каких - либо атрибутов,
+// блокируют обработку HTML - документа и построение DOM.Это проблема.
+
+// <script src="path-to-script.js"></>
+
+// Когда анализатор встречает такой тег, обработка HTML - документа приостанавливается и
+// начинается загрузка файла скрипта указанного в атрибуте src.
+// После загрузки скрипт выполняется, и только потом возобновляется обработка HTML.
+// Это называется «блокирующий» скрипт.
+
+// Атрибуты defer и async были введены чтобы дать разработчикам возможность лучше контролировать
+// как загружать скрипты и когда именно их выполнять.
+
+//todo =========== Атрибут defer ===========
+
+//* <script defer src="path-to-script.js"></script>
+
+// Атрибут defer указывает браузеру загружать файл скрипта в фоновом режиме,
+// паралельно обработке HTML - документа и построению DOM.Скрипт будет выполнен только после того
+// как HTML - документ обработан, а DOM построен.
+// Такие скрипты не блокируют построение DOM - дерева и гарантированно выполняются в том порядке,
+// в котором указаны в HTML - документе.
+
+//todo =========== Атрибут async ===========
+
+//* <script async src="path-to-script.js"></script>
+
+// Загрузка скрипта с атрибутом async не блокирует построение DOM, но он выполняется сразу после
+// загрузки.Это значит, что такие скрипты могут заблокировать построение DOM,
+// и выполняются в произвольном порядке.
