@@ -10,7 +10,7 @@
 // Содержит набор свойств и методов, позволяющих получить доступ непосредственно к текущей вкладке и ряду функций браузера.
 // Включает объект работы с историей навигации, местоположением и многое другое.
 
-//!======================================== DOM =================================================
+//!======================================== DOM Навигация по DOM  =================================================
 
 // DOM предоставляет широкий спектр возможностей при работе с элементом и его содержимым, но для этого на него сначала нужно получить ссылку.
 //* Доступ к DOM начинается с объекта document, от него можно добраться до любых элементов.
@@ -223,6 +223,7 @@
 
 //* Для получения значения data-атрибута используется свойство dataset, после которого идет имя атрибута. 
 То есть data- отбрасывается, а остальное имя записывается как имя свойства объекта.
+action будет ключ, а save - значение ключа
 
 const saveBtn = document.querySelector('button[data-action="save"]');
 console.log(saveBtn.dataset.action); // "save"
@@ -263,7 +264,8 @@ console.log(closeBtn.dataset.action); // "close" */}
 
 //todo ============ Создание =======================
 //* document.createElement(tagName);
-// Создает элемент с именем tagName и возвращает ссылку на него как результат своего выполнения. tagName - это строка, указывающая тип создаваемого элемента. Элемент создается в памяти, в DOM его еще нет.
+// Создает элемент с именем tagName и возвращает ссылку на него как результат своего выполнения. tagName - это строка, указывающая тип создаваемого элемента.
+// Элемент создается в памяти, в DOM его еще нет.
 
 // const heading = document.createElement("h1");
 // console.log(heading); // <h1></h1>
@@ -281,6 +283,7 @@ console.log(closeBtn.dataset.action); // "close" */}
 // Чтобы созданный элемент был отображен на странице, его необходимо добавить к уже существующему элементу в DOM - дереве.
 // Допустим, что добавляем в некий элемент element, для этого есть методы.
 
+//* element.appendChild() - добавляет один элемент после всех детей элемента element.
 //* element.append(el1, el2, ...) - добавляет один или несколько элементов после всех детей элемента element.
 //* element.prepend(el1, el2, ...) - добавляет один или несколько элементов перед всеми детьми элемента element.
 //* element.after(el1, el2, ...) - добавляет один или несколько элементов после элемента element.
@@ -586,3 +589,129 @@ list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>"); */}
 // Загрузка скрипта с атрибутом async не блокирует построение DOM, но он выполняется сразу после
 // загрузки.Это значит, что такие скрипты могут заблокировать построение DOM,
 // и выполняются в произвольном порядке.
+
+
+
+
+//todo -------------------------------------------------------------------------------------------------------------------
+//!================================================ ПРАКТИКА =============================================================
+//todo -------------------------------------------------------------------------------------------------------------------
+
+
+//todo =============================== Создаём коллекцию разметки из массива объектов (colorPickerButtons) ======================================
+
+// const colorPickerOptions = [
+//   { label: 'red', color: '#F44336' },
+//   { label: 'green', color: '#4CAF50' },
+//   { label: 'blue', color: '#2196F3' },
+//   { label: 'grey', color: '#607D8B' },
+//   { label: 'pink', color: '#E91E63' },
+//   { label: 'indigo', color: '#3F51B5' },
+// ];
+
+//==========================================================
+// const colorPickerContainerEl = document.querySelector('.js-color-picker'); //* сделали привязку к пустому классу
+
+// const elements = colorPickerOptions.map(option => { //* пройдём по массиву colorPickerOptions и результат запишем в массив elements
+//   const buttonEl = document.createElement('button'); //* создали кнопку
+//   buttonEl.type = 'button'; //* добавили ей тип
+//   buttonEl.classList.add('color-picker__options'); //* добавили ей класс (в котором в CSS можно назначить свойства)
+//   buttonEl.textContent = option.label; //* вставили текст в кнопку взяв его в option.label
+//   buttonEl.style.backgroundColor = option.color; //* вставили цвет в кнопку взяв его в option.color
+
+//   return buttonEl; // <button type="button" class="color-picker__options" style="background-color: rgb(244, 67, 54);">red</button> и т.д.
+// });
+
+// colorPickerContainerEl.append(...elements); //* вставили в класс colorPickerContainerEl элементы с elements (распылив его)
+
+//?======================= то же самое через функцию для создания разметки колорпикера ==========
+
+// const colorPickerContainerEl = document.querySelector('.js-color-picker'); //* сделали привязку к пустому классу
+
+// const makeColorPickerOptions = options => {
+//   return options.map(option => { //* пройдём по массиву colorPickerOptions и результат запишем в массив elements
+//     const buttonEl = document.createElement('button'); //* создали кнопку
+//     buttonEl.type = 'button'; //* добавили ей тип
+//     buttonEl.classList.add('color-picker__options'); //* добавили ей класс (в котором в CSS можно назначить свойства)
+//     buttonEl.textContent = option.label; //* вставили текст в кнопку взяв его в option.label
+//     buttonEl.style.backgroundColor = option.color; //* вставили цвет в кнопку взяв его в option.color
+
+//     return buttonEl;
+//   });
+// };
+
+// const elements = makeColorPickerOptions(colorPickerOptions);
+// colorPickerContainerEl.append(...elements);
+
+//todo =========================== Создаём карточку продукта из объекта ==========================================================
+
+// //! ИМПОРТ С ПАПКИ МАССИВА С ОБЪЕКТАМИ (КАРТОЧКИ)
+// import product from './data/products.js'
+
+
+// //? Напишем функцию добавления разметки из карточки продукта
+
+// const makeProductCard = ({ name, description, price }) => {  //* деструктуризируем нужные данные
+//   const productEl = document.createElement('article');
+//   productEl.classList.add('product');
+
+//   const nameEl = document.createElement('h2');
+//   nameEl.classList.add('product_name');
+//   nameEl.textContent = name;
+
+//   const descrEl = document.createElement('p');
+//   descrEl.textContent = description;
+//   descrEl.classList.add('product_descr');
+
+//   const priceEi = document.createElement('p');
+//   priceEi.textContent = `Цена ${name} составляет ${price} кредитов`;
+//   priceEi.classList.add('product_price');
+
+//   productEl.append(nameEl, descrEl, priceEi); //* делаем "гроздь чтобы повесить в DOM всё сразу"
+
+//   return productEl; //* возврат "грозди"
+// }
+
+
+// const card = document.querySelector('.card');  //* делаем привязку к классу к которому хотим добавить "гроздь"
+
+// const elements = product.map(makeProductCard); //* пройдём по массиву product и вызовем makeProductCard (CALLBACK)
+
+// card.append(...elements); //* добавляем разметку elements в card
+
+
+
+
+//! ================================== Метод insertAdjacentHTML() через транзакции и таблицы ================================
+
+
+// //! ИМПОРТ С ПАПКИ МАССИВА С ОБЪЕКТАМИ (КАРТОЧКИ)
+import transactionHistory from './data/transactoins.js'
+
+
+// //? Напишем функцию добавления разметки из карточки продукта
+
+const makeTransactionTableString = transaction => {
+  return `
+  <tbody>
+    <tr>
+      <td>${transaction.id}</td>
+      <td>${transaction.amount}</td>
+      <td>${transaction.date}</td>
+      <td>${transaction.name}</td>
+      <td>${transaction.type}</td>
+      <td>${transaction.business}</td>
+      <td>${transaction.account}</td>
+    </tr>
+  </tbody>
+  `
+};
+
+makeTransactionTableString(transactionHistory[0]);
+
+const makeTransactionTableRows = transactionHistory
+  .map(makeTransactionTableString)  //* прошлись по массиву объектов
+  .join(''); //* join нужен чтобы сделать одну строку (insertAdjacentHTML принимает только строку)
+
+const tableEl = document.querySelector('.js-transaction-table');
+tableEl.insertAdjacentHTML('beforeend', makeTransactionTableRows);
