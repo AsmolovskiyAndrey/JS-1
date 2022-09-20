@@ -685,33 +685,33 @@ list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>"); */}
 //! ================================== Метод insertAdjacentHTML() через транзакции и таблицы ================================
 
 
-// //! ИМПОРТ С ПАПКИ МАССИВА С ОБЪЕКТАМИ (КАРТОЧКИ)
-import transactionHistory from './data/transactoins.js'
+// // //! ИМПОРТ С ПАПКИ МАССИВА С ОБЪЕКТАМИ (КАРТОЧКИ)
+// import transactionHistory from './data/transactoins.js'
 
 
-// //? Напишем функцию добавления разметки из карточки продукта
+// // //? Напишем функцию добавления разметки из карточки продукта
 
-const makeTransactionTableString = transaction => {
-  return `
-  <tbody>
-    <tr>
-      <td>${transaction.id}</td>
-      <td>${transaction.amount}</td>
-      <td>${transaction.date}</td>
-      <td>${transaction.name}</td>
-      <td>${transaction.type}</td>
-      <td>${transaction.business}</td>
-      <td>${transaction.account}</td>
-    </tr>
-  </tbody>
-  `
-};
+// const makeTransactionTableString = transaction => {
+//   return `
+//   <tbody>
+//     <tr>
+//       <td>${transaction.id}</td>
+//       <td>${transaction.amount}</td>
+//       <td>${transaction.date}</td>
+//       <td>${transaction.name}</td>
+//       <td>${transaction.type}</td>
+//       <td>${transaction.business}</td>
+//       <td>${transaction.account}</td>
+//     </tr>
+//   </tbody>
+//   `
+// };
 
-makeTransactionTableString(transactionHistory[0]);
+// makeTransactionTableString(transactionHistory[0]);
 
-const makeTransactionTableRows = transactionHistory
-  .map(makeTransactionTableString)  //* прошлись по массиву объектов
-  .join(''); //* join нужен чтобы сделать одну строку (insertAdjacentHTML принимает только строку)
+// const makeTransactionTableRows = transactionHistory
+//   .map(makeTransactionTableString)  //* прошлись по массиву объектов
+//   .join(''); //* join нужен чтобы сделать одну строку (insertAdjacentHTML принимает только строку)
 
-const tableEl = document.querySelector('.js-transaction-table');
-tableEl.insertAdjacentHTML('beforeend', makeTransactionTableRows);
+// const tableEl = document.querySelector('.js-transaction-table');
+// tableEl.insertAdjacentHTML('beforeend', makeTransactionTableRows);
