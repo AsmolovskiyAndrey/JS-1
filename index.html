@@ -7,8 +7,10 @@
     <title>JS-1</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
+
+
   <body>
-    <label>
+    <!-- <label>
       Число
       <input type="number" data-value/>
     </label>
@@ -25,7 +27,7 @@
       <button class="js-decrement">Уменьшить</button>
       <p class="js-value">0</p>
       <button class="js-increment">Увеличить</button>
-    </div>
+    </div> -->
 
     <!-- <ul id="menu" class="menu">
       <li class="menu-item">home</li>
@@ -72,7 +74,7 @@
           <li data-id="61">Pistachio Elderberry Wafer</li>
         </ul>
     </div> -->
-<div class="js-color-picker"></div>
+<!-- <div class="js-color-picker"></div>
 <div class="card"></div>
 
 <table class="transaction-table js-transaction-table">
@@ -87,7 +89,40 @@
       <th>Номер счёта</th>
     </tr>
   </thead>
-</table>
+</table> -->
+  <form class="js-register-form" autocomplete="off">
+    <div role="group">
+      <label>
+        Почта
+        <input type="email" name="email">
+      </label>
+      <label>
+        Пароль
+        <input type="password" name="password">
+      </label>
+    </div>
+
+    <br>
+    <div role="group">
+      <b>Тип подписки:</b>
+      <label>
+        <input type="radio" name="subscription" value="free">
+        Free
+      </label>
+      <label>
+        <input type="radio" name="subscription" value="basic">
+        Basic
+      </label>
+      <label>
+        <input type="radio" name="subscription" value="pro">
+        Pro
+      </label>
+    </div>
+
+    <br>
+    <button type="submit">Зарегистрироваться</button>
+  </form>
+
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script> -->
     
@@ -128,7 +163,7 @@
     <!-- <script src="./js/6-2_arrowFunctions.js" type="module"></script> -->
     <!-- <script src="./js/9_5-this.js" type="module"></script> -->
     <!-- <script src="./js/10_5-class_OOP.js" type="module"></script> -->
-    <script src="./js/11_DOM.js" type="module"></script>
-    <!-- <script src="./js/12_DOM-Events.js" type="module"></script> -->
+    <!-- <script src="./js/11_DOM.js" type="module"></script> -->
+    <script src="./js/12_DOM-Events.js" type="module"></script>
   </body>
 </html>
