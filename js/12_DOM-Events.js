@@ -247,12 +247,14 @@
 //! =============================================== События клавиатуры ==============================================
 //todo ==============================================================================================================
 
+//! =============================== События keypress, keydown, keyup ==============================================
 //? Есть два основных события клавиатуры: keydown и keyup.
 // В отличии от других, события клавиатуры обрабатываются на документе, а не на конкретном элементе.
 // Объекты событий клавиатуры происходят от базового класса KeyboardEvent.
 
 // document.addEventListener("keydown", event => {
 //   console.log("Keydown: ", event);
+// console.log("Keydown: ", event.key); //* выводит значение нажатой клавиши
 // });
 
 // document.addEventListener("keyup", event => {
@@ -273,8 +275,8 @@
 //? Свойство code возвращает код физической клавиши на клавиатуре и не изменяется между языками.
 
 // document.addEventListener("keydown", event => {
-//   console.log("key: ", event.key);
-//   console.log("code: ", event.code);
+//   console.log("key: ", event.key); //* символ буквальный(j если английский )
+//   console.log("code: ", event.code); //* какая клавиша (KeyJ)
 // });
 
 //! =============================================== Клавиши-модифкаторы =============================
@@ -297,6 +299,7 @@
 // ИНТЕРЕСНО
 // Не так давно, вместо свойств key и code использовали свойство keyCode.Многие посты на форумах и блогах по - прежнему могут использовать его,
 // но будьте осторожны - оно устарело, не используйте свойство keyCode.
+
 
 
 
@@ -450,83 +453,11 @@ select {
 //   output.textContent = event.currentTarget.value;
 // });
 
-
-//! ================================================== События focus и blur ==========================================================
-
-// Элемент получает фокус при клике мыши или переходе клавишей Tab.Момент получения фокуса и потери очень важен,
-// при получении фокуса мы можем подгрузить данные для автозаполнения, начать отслеживать изменения и т.п.
-// При потере фокуса - проверить введённые данные.
-
-// При фокусировке элемента происходит событие focus, а когда фокус исчезает, например пользователь кликает в другом месте экрана,
-// происходит событие blur.Активировать или отменить фокус можно программно, вызвав в коде одноименные методы focus() и blur() у элемента.
-
-//======================================== HTML + JS ========================================================================================
-
-{/* <button type="button" data-action="set">Set focus to input</button>
-<button type="button" data-action="remove">Remove focus from input</button>
-<br><br>
-<input type="text" class="text-input" /> */}
-
-//===========================================================
-
-// body {
-//   margin: 16px;
-//   line-height: 1.5;
-//   font-family: sans-serif;
-//   letter-spacing: 0.5px;
-// }
-
-// input {
-//   width: 100%;
-//   max-width: 320px;
-//   padding: 8px;
-//   font: inherit;
-//   letter-spacing: inherit;
-// }
-
-// button {
-//   display: inline-flex;
-//   padding: 4px;
-//   margin-right: 2px;
-//   margin-left: 2px;
-// }
-
-//=========================================================
-
-// const textInput = document.querySelector(".text-input");
-// const setFocusBtn = document.querySelector('[data-action="set"]');
-// const removeFocusBtn = document.querySelector('[data-action="remove"]');
-
-// setFocusBtn.addEventListener("click", () => {
-//   textInput.focus();
-// });
-
-// removeFocusBtn.addEventListener("click", () => {
-//   textInput.blur();
-// });
-
-// textInput.addEventListener("focus", () => {
-//   textInput.value = "This input has focus";
-// });
-
-// textInput.addEventListener("blur", () => {
-//   textInput.value = "";
-// });
-
-//=========================================================================================================
- 
-// Фокус может быть только на одном элементе страницы в единицу времени и текущий элемент, на котором фокус, доступен как document.activeElement.
-
-// ИНТЕРЕСНО
-// Многие элементы не могут получить фокус.Например, если кликнуть по < div >, то фокусировка на нем не произойдет,
-// потому что это не интерактивный элемент.
-
-//todo ==================================== ПРАКТИКА ===========================================================================
 //! ==================================== Метод ForData для сбора всех данных с формы =====================================================
 
-const form = document.querySelector('.js-register-form'); //* привязали класс
+// const form = document.querySelector('.js-register-form'); //* привязали класс
 
-form.addEventListener('submit', onFormSubmit); //*повесил событие отправка формы - вызвать функцию
+// form.addEventListener('submit', onFormSubmit); //*повесил событие отправка формы - вызвать функцию
 
 //   //? сделаем возможность получить данные с формы и создадим объект с данными ====================================
 // function onFormSubmit(event) {
@@ -548,13 +479,78 @@ form.addEventListener('submit', onFormSubmit); //*повесил событие 
 // }
 
 //? ====================== если нужно получить все данные с формы а не какие-то отдельно то проще ForData ============
-function onFormSubmit(event) {
-  event.preventDefault();   //*не будет перезагрузки страницы при отправкe формы
+// function onFormSubmit(event) {
+//   event.preventDefault();   //*не будет перезагрузки страницы при отправкe формы
 
-  const formData = new FormData(event.currentTarget); //* запись в переменную всех данных с формы
+//   const formData = new FormData(event.currentTarget); //* запись в переменную всех данных с формы
 
-  formData.forEach((value, name) => {  //* демонстрация данных в formData
-    console.log(`name:`, name);
-    console.log(`value:`, value); //* например name: email value: asd@qwe.com name: password value: qweR321&qq name: subscription value: basic
-  })
-}
+//   formData.forEach((value, name) => {  //* демонстрация данных в formData
+//     console.log(`name:`, name);
+//     console.log(`value:`, value); //* например name: email value: asd@qwe.com name: password value: qweR321&qq name: subscription value: basic
+//   })
+// }
+
+
+//! ================================================== События focus и blur ==========================================================
+
+// Элемент получает фокус при клике мыши или переходе клавишей Tab.Момент получения фокуса и потери очень важен,
+// при получении фокуса мы можем подгрузить данные для автозаполнения, начать отслеживать изменения и т.п.
+// При потере фокуса - проверить введённые данные.
+
+// При фокусировке элемента происходит событие focus, а когда фокус исчезает, например пользователь кликает в другом месте экрана,
+// происходит событие blur.Активировать или отменить фокус можно программно, вызвав в коде одноименные методы focus() и blur() у элемента.
+
+//======================================== HTML + JS ========================================================================================
+//! ============================================ данные с input (focus, blur, input, change) (патерн объект ссылок) ======================================================
+// const input = document.querySelector('.js-input');
+// const nameLabel = document.querySelector('.js-button > span');
+// const license = document.querySelector('.js-license');
+// const btn = document.querySelector('.js-button');
+
+//* сделал тоже самое через патерн ссылок на объект
+// const refs = {
+//   input: document.querySelector('.js-input'),
+//   nameLabel: document.querySelector('.js-button > span'),
+//   license: document.querySelector('.js-license'),
+//   btn: document.querySelector('.js-button'),
+// }
+
+// refs.input.addEventListener('focus', onInputFocus); //? событие фокус в инпуте
+// refs.input.addEventListener('blur', onInputBlur);  //? событие потеря фокуса в инпуте
+// refs.input.addEventListener('input', onInputChange); //? запись в переменную каждый раз когда что-то меняется
+// refs.license.addEventListener('change', onLisenceChange); //? при срабатывании чекбокса сделаем кнопку активной
+
+// function onInputFocus() {
+//   console.log('Инпут получил фокус - событие focus');
+// }
+
+// function onInputBlur() {
+//   console.log('Инпут потерял фокус - событие blur');
+// }
+
+// function onInputChange(event) {
+//   console.log(event.currentTarget.value);
+//   refs.nameLabel.textContent = event.currentTarget.value; //? запись в спан данных введённых с инпута
+// }
+
+// function onLisenceChange(event) {
+//   refs.btn.disabled = !event.currentTarget.checked;
+// }
+
+//=========================================================================================================
+ 
+// Фокус может быть только на одном элементе страницы в единицу времени и текущий элемент, на котором фокус, доступен как document.activeElement.
+
+// ИНТЕРЕСНО
+// Многие элементы не могут получить фокус.Например, если кликнуть по < div >, то фокусировка на нем не произойдет,
+// потому что это не интерактивный элемент.
+
+
+//todo ==================================================================================================================================
+//! ==========================================================События мыши ==============================================================
+//todo ==================================================================================================================================
+// mouseenter - ховер да
+// mouseleave - ховер нет
+// mouseover - ховер над вложенным элементом
+// mouseout - ховер над вложенным элементом
+// mousemove - отслеживает все перемещения мышки ("болтливое")
