@@ -560,3 +560,32 @@ select {
 //! ========================================================== Практика с модалкой ======================================================
 //todo ==================================================================================================================================
 
+const refs = {
+  openBtnModal: document.querySelector('.js-modal-btn-open'),
+  closeBtnModal: document.querySelector('.js-modal-btn-close'),
+  backDrop: document.querySelector('.js-backdrop'),
+  heroModal: document.querySelector('.hero-modal'),
+};
+
+
+refs.openBtnModal.addEventListener('click', onOpenModal);
+refs.closeBtnModal.addEventListener('click', closeModal);
+refs.backDrop.addEventListener('click', closeWennBackDrop);
+
+
+function onOpenModal() {
+  refs.heroModal.classList.add('show-modal')
+}
+
+function closeModal() {
+  refs.heroModal.classList.remove('show-modal')
+}
+
+function closeWennBackDrop(event) {
+  // console.log(event.currentTarget);
+  // console.log(event.target);
+  if (event.currentTarget === event.target) {
+    console.log('Кликнули по бэкдроп');
+    closeModal();
+  }
+}
