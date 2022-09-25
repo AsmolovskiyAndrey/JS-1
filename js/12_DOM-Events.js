@@ -574,10 +574,12 @@ refs.backDrop.addEventListener('click', closeWennBackDrop);
 
 
 function onOpenModal() {
+  window.addEventListener('keydown', onEscCloseModal); //* вешаем слушателя на клавиши при открытой модалке
   refs.heroModal.classList.add('show-modal')
 }
 
 function closeModal() {
+  window.removeEventListener('keydown', onEscCloseModal); //* снимаем слушателя на клавиши при закрытии модалки
   refs.heroModal.classList.remove('show-modal')
 }
 
@@ -586,6 +588,12 @@ function closeWennBackDrop(event) {
   // console.log(event.target);
   if (event.currentTarget === event.target) {
     console.log('Кликнули по бэкдроп');
+    closeModal();
+  }
+}
+
+function onEscCloseModal(event) {  //* функция закрывает модалку при нажатии Escape
+  if (event.code === 'Escape') {
     closeModal();
   }
 }
