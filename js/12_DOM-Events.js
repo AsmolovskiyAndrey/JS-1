@@ -560,40 +560,40 @@ select {
 //! ========================================================== Практика с модалкой ======================================================
 //todo ==================================================================================================================================
 
-const refs = {
-  openBtnModal: document.querySelector('.js-modal-btn-open'),
-  closeBtnModal: document.querySelector('.js-modal-btn-close'),
-  backDrop: document.querySelector('.js-backdrop'),
-  heroModal: document.querySelector('.hero-modal'),
-};
+// const refs = {
+//   openBtnModal: document.querySelector('.js-modal-btn-open'),
+//   closeBtnModal: document.querySelector('.js-modal-btn-close'),
+//   backDrop: document.querySelector('.js-backdrop'),
+//   heroModal: document.querySelector('.hero-modal'),
+// };
 
 
-refs.openBtnModal.addEventListener('click', onOpenModal);
-refs.closeBtnModal.addEventListener('click', closeModal);
-refs.backDrop.addEventListener('click', closeWennBackDrop);
+// refs.openBtnModal.addEventListener('click', onOpenModal);
+// refs.closeBtnModal.addEventListener('click', closeModal);
+// refs.backDrop.addEventListener('click', closeWennBackDrop);
 
 
-function onOpenModal() {
-  window.addEventListener('keydown', onEscCloseModal); //* вешаем слушателя на клавиши при открытой модалке
-  refs.heroModal.classList.add('show-modal')
-}
+// function onOpenModal() {
+//   window.addEventListener('keydown', onEscCloseModal); //* вешаем слушателя на клавиши при открытой модалке
+//   refs.heroModal.classList.add('show-modal')
+// }
 
-function closeModal() {
-  window.removeEventListener('keydown', onEscCloseModal); //* снимаем слушателя на клавиши при закрытии модалки
-  refs.heroModal.classList.remove('show-modal')
-}
+// function closeModal() {
+//   window.removeEventListener('keydown', onEscCloseModal); //* снимаем слушателя на клавиши при закрытии модалки
+//   refs.heroModal.classList.remove('show-modal')
+// }
 
-function closeWennBackDrop(event) {
-  // console.log(event.currentTarget);
-  // console.log(event.target);
-  if (event.currentTarget === event.target) {
-    console.log('Кликнули по бэкдроп');
-    closeModal();
-  }
-}
+// function closeWennBackDrop(event) {
+//   // console.log(event.currentTarget);
+//   // console.log(event.target);
+//   if (event.currentTarget === event.target) {
+//     console.log('Кликнули по бэкдроп');
+//     closeModal();
+//   }
+// }
 
-function onEscCloseModal(event) {  //* функция закрывает модалку при нажатии Escape
-  if (event.code === 'Escape') {
-    closeModal();
-  }
-}
+// function onEscCloseModal(event) {  //* функция закрывает модалку при нажатии Escape
+//   if (event.code === 'Escape') {
+//     closeModal();
+//   }
+// }

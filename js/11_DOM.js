@@ -685,11 +685,11 @@ list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>"); */}
 //! ================================== Метод insertAdjacentHTML() через транзакции и таблицы ================================
 
 
-// // //! ИМПОРТ С ПАПКИ МАССИВА С ОБЪЕКТАМИ (КАРТОЧКИ)
+// //! ИМПОРТ С ПАПКИ МАССИВА С ОБЪЕКТАМИ (КАРТОЧКИ)
 // import transactionHistory from './data/transactoins.js'
 
 
-// // //? Напишем функцию добавления разметки из карточки продукта
+// //? Напишем функцию добавления разметки из карточки продукта
 
 // const makeTransactionTableString = transaction => {
 //   return `
