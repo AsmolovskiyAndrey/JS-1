@@ -61,13 +61,13 @@
 // listWithId.style.textTransform = 'uppercase';
 // listWithId.style.fontSize = '20px';
 // console.log(listWithId);
-// // const listWithClass = document.querySelector('.menu'); //* связь по классу
-// // console.log(listWithClass);
+// const listWithClass = document.querySelector('.menu'); //* связь по классу
+// console.log(listWithClass);
 
 // const menuItemsByTagName = document.querySelectorAll("li"); //* связь по всем li
 // console.log(menuItemsByTagName);
-// // const menuItemsByClass = document.querySelectorAll(".menu-item"); //* связь по классу
-// // console.log(menuItemsByClass);
+// const menuItemsByClass = document.querySelectorAll(".menu-item"); //* связь по классу
+// console.log(menuItemsByClass);
 
 // const firstMenuItem = document.querySelector(".menu-item"); //* выбрал первый попавшийся класс т.е. первый
 // firstMenuItem.style.color = 'tomato';
