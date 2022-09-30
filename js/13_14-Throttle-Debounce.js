@@ -318,7 +318,7 @@
 // HTML - атрибут loading тега < img > поддерживается нативно во всех современных браузерах кроме Safari и позволяет браузеру отложить
 // загрузку закадровых изображений до тех пор, пока пользователь не прокрутит до них страницу.
 
-<img src="my-image.jpg" loading="lazy" alt="Image description" />
+{/* <img src="my-image.jpg" loading="lazy" alt="Image description" /> */}
 
 // Поддерживает три значения:
 
@@ -394,3 +394,47 @@
 //   data-src="path/to/my-image.jpg"
 //   alt="Generic alt"
 // />
+
+
+//todo ================================================================================================================
+//! ================================================ Практика =========================================================
+//todo ================================================================================================================
+
+const buttonRef = document.querySelector('.button_13');
+buttonRef.addEventListener('click', onClick); //? повесил слушателя на родителя (весь DIV)
+
+function onClick(event) {
+  if (event.target.nodeName !== 'BUTTON') { //? nodeName проверит чтобы мы ловили только собития по кнопке,а не скажем в DIV
+    return;
+}
+
+  // console.log(event.target); //? получаю ссылку на ребёнка (туда куда нажал) например <button type="button">Кнопка 4</button>
+  // console.log(event.target.textContent); //? например Кнопка 4
+
+
+  // onBtnClick(event); //? вызов функции для проверки и установки активного состояния (на одной кнопке)
+  onBtnClickCreateArray(event); //? вызов функции для установки активного состояния (на всех кнопках) и создание массива
+}
+
+function onBtnClick(evt) {
+  const activeBtn = document.querySelector('.btn-active'); //* проверяем есть ли данный класс
+
+  // if (activeBtn) { //* проверяем есть ли данный класс, если есть - удалим его (сделали тоже самое в 423строке)
+  //   activeBtn.classList.remove('btn-active');
+  // }
+  activeBtn?.classList.remove('btn-active');
+
+  evt.target.classList.add('btn-active'); //* установим класс на активную кнопку
+}
+
+const arrayWithTags = new Set(); //! создали пустой Сэт (множество) - в нём нет повторений как в массиве
+function onBtnClickCreateArray(evt) {
+  evt.target.classList.toggle('btn-active'); //? если класс есть,то снимет его, а если нет добавит
+  
+  if (evt.target.classList.contains('btn-active')) {
+    arrayWithTags.add(evt.target.dataset.value); //*добавим тэг в сэт
+  } else {
+    arrayWithTags.delete(evt.target.dataset.value); //*удалим тэг из сэта
+  }
+  console.log(arrayWithTags); // например Set(3) {'Node', 'React', 'JS'}
+}
