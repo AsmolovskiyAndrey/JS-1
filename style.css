@@ -33,3 +33,16 @@ table td {
 .btn-active{
     background-color: blue;
 }
+
+
+
+.colorpicker_13{
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    border: solid;
+}
+.color-swatch{
+    width: 120px;
+    height: 60px;
+}

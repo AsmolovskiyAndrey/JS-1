@@ -450,23 +450,34 @@ const colors = [
   { hex: '#2196f3', rgb: '33,150,243' },
 ];
 
-createColorCardsMarkup(colors);
+// console.log(createColorCardsMarkup(colors));
+const paletteContainer = document.querySelector('.colorpicker_13');
+const cardsMarkup = createColorCardsMarkup(colors);
+
+paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup)
+
+paletteContainer.addEventListener('click', onPaletteContainerClick);
 
 function createColorCardsMarkup(colors) {
-  const markup = colors.map(({hex, rgb}) => {
+  const markup = colors.map(({ hex, rgb }) => {
     return `
       <div class="colorpicker_13">
         <div class="color-swatch"
           data-hex="${hex}"
           data-rgb="${rgb}"
-          style="background-color: #955014">  
+          style="background-color: ${hex}">  
         </div>
         <div class="color-meta">
           <p>HEX:${hex}</p>
           <p>RGB: ${rgb}</p>
         </div>
       </div>
-    `
-  });
-  console.log(markup);
+    `;
+  }).join('');
+  // console.log(markup[0]);
+  return markup;
+}
+
+function onPaletteContainerClick(evt) {
+  console.log(evt.target);
 }
