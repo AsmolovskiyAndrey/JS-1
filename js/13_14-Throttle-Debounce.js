@@ -450,15 +450,14 @@ const colors = [
   { hex: '#2196f3', rgb: '33,150,243' },
 ];
 
-// console.log(createColorCardsMarkup(colors));
 const paletteContainer = document.querySelector('.colorpicker_13');
-const cardsMarkup = createColorCardsMarkup(colors);
+const cardsMarkup = createColorCardsMarkup(colors); //* создали строку с разметкой
 
-paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup)
+paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup) //* повесили строку с разметкой в класс .colorpicker_13
 
 paletteContainer.addEventListener('click', onPaletteContainerClick);
 
-function createColorCardsMarkup(colors) {
+function createColorCardsMarkup(colors) { //? Создаёт разметку из массива элементов
   const markup = colors.map(({ hex, rgb }) => {
     return `
       <div class="colorpicker_13">
@@ -479,5 +478,29 @@ function createColorCardsMarkup(colors) {
 }
 
 function onPaletteContainerClick(evt) {
-  console.log(evt.target);
+  if (!evt.target.classList.contains("color-swatch")) { //? если клик не по квадрату с цветом то ретурн
+    return
+  }
+
+  const parentColorCard = evt.target.closest('.colorpicker_13'); //? найдёт ближайшего родителя с классом colorpicker_13
+
+  removeActiveClass();
+  addActiveClass(parentColorCard);
+  setBobyColor(evt.target.dataset.hex);
+}
+
+function setBobyColor(color) {
+  document.body.style.backgroundColor = color; //* применим на боди backgroundColor цвет из dataset.hex
+}
+
+function removeActiveClass() {
+  const currentActiveCard = document.querySelector('.colorpicker_13.is-active'); //* ссылка на два класса вместе
+
+  if (currentActiveCard) { //* если активный класс есть то удалим его
+    currentActiveCard.classList.remove('is-active');
+  }
+}
+
+function addActiveClass(card) {
+  card.classList.add('is-active'); //* добавим активный класс
 }
