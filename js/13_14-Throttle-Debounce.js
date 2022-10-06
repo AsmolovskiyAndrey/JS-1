@@ -400,41 +400,73 @@
 //! ================================================ Практика =========================================================
 //todo ================================================================================================================
 
-const buttonRef = document.querySelector('.button_13');
-buttonRef.addEventListener('click', onClick); //? повесил слушателя на родителя (весь DIV)
+// const buttonRef = document.querySelector('.button_13');
+// buttonRef.addEventListener('click', onClick); //? повесил слушателя на родителя (весь DIV)
 
-function onClick(event) {
-  if (event.target.nodeName !== 'BUTTON') { //? nodeName проверит чтобы мы ловили только собития по кнопке,а не скажем в DIV
-    return;
-}
+// function onClick(event) {
+//   if (event.target.nodeName !== 'BUTTON') { //? nodeName проверит чтобы мы ловили только собития по кнопке,а не скажем в DIV
+//     return;
+// }
 
-  // console.log(event.target); //? получаю ссылку на ребёнка (туда куда нажал) например <button type="button">Кнопка 4</button>
-  // console.log(event.target.textContent); //? например Кнопка 4
+//   // console.log(event.target); //? получаю ссылку на ребёнка (туда куда нажал) например <button type="button">Кнопка 4</button>
+//   // console.log(event.target.textContent); //? например Кнопка 4
 
 
-  // onBtnClick(event); //? вызов функции для проверки и установки активного состояния (на одной кнопке)
-  onBtnClickCreateArray(event); //? вызов функции для установки активного состояния (на всех кнопках) и создание массива
-}
+//   // onBtnClick(event); //? вызов функции для проверки и установки активного состояния (на одной кнопке)
+//   onBtnClickCreateArray(event); //? вызов функции для установки активного состояния (на всех кнопках) и создание массива
+// }
 
-function onBtnClick(evt) {
-  const activeBtn = document.querySelector('.btn-active'); //* проверяем есть ли данный класс
+// function onBtnClick(evt) {
+//   const activeBtn = document.querySelector('.btn-active'); //* проверяем есть ли данный класс
 
-  // if (activeBtn) { //* проверяем есть ли данный класс, если есть - удалим его (сделали тоже самое в 423строке)
-  //   activeBtn.classList.remove('btn-active');
-  // }
-  activeBtn?.classList.remove('btn-active');
+//   // if (activeBtn) { //* проверяем есть ли данный класс, если есть - удалим его (сделали тоже самое в 423строке)
+//   //   activeBtn.classList.remove('btn-active');
+//   // }
+//   activeBtn?.classList.remove('btn-active');
 
-  evt.target.classList.add('btn-active'); //* установим класс на активную кнопку
-}
+//   evt.target.classList.add('btn-active'); //* установим класс на активную кнопку
+// }
 
-const arrayWithTags = new Set(); //! создали пустой Сэт (множество) - в нём нет повторений как в массиве
-function onBtnClickCreateArray(evt) {
-  evt.target.classList.toggle('btn-active'); //? если класс есть,то снимет его, а если нет добавит
+// const arrayWithTags = new Set(); //! создали пустой Сэт (множество) - в нём нет повторений как в массиве
+// function onBtnClickCreateArray(evt) {
+//   evt.target.classList.toggle('btn-active'); //? если класс есть,то снимет его, а если нет добавит
   
-  if (evt.target.classList.contains('btn-active')) {
-    arrayWithTags.add(evt.target.dataset.value); //*добавим тэг в сэт
-  } else {
-    arrayWithTags.delete(evt.target.dataset.value); //*удалим тэг из сэта
-  }
-  console.log(arrayWithTags); // например Set(3) {'Node', 'React', 'JS'}
+//   if (evt.target.classList.contains('btn-active')) {
+//     arrayWithTags.add(evt.target.dataset.value); //*добавим тэг в сэт
+//   } else {
+//     arrayWithTags.delete(evt.target.dataset.value); //*удалим тэг из сэта
+//   }
+//   console.log(arrayWithTags); // например Set(3) {'Node', 'React', 'JS'}
+// }
+
+//todo ======================================================= Colorpicker =======================================================================
+
+const colors = [
+  { hex: '#f44336', rgb: '244,67,54' },
+  { hex: '#e91e63', rgb: '233,30,99' },
+  { hex: '#9c27b0', rgb: '156,39,176' },
+  { hex: '#673ab7', rgb: '103,58,183' },
+  { hex: '#3f51b5', rgb: '63,81,181' },
+  { hex: '#2196f3', rgb: '33,150,243' },
+];
+
+createColorCardsMarkup(colors);
+
+function createColorCardsMarkup(colors) {
+  const markup = colors.map(({hex, rgb}) => {
+    return `
+      <div class="colorpicker_13">
+        <div class="color-swatch"
+          data-hex="${hex}"
+          data-rgb="${rgb}"
+          style="background-color: #955014">  
+        </div>
+        <div class="color-meta">
+          <p>HEX:${hex}</p>
+          <p>RGB: ${rgb}</p>
+        </div>
+      </div>
+    `
+  });
+  console.log(markup);
 }
