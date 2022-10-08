@@ -441,66 +441,162 @@
 
 //todo ======================================================= Colorpicker =======================================================================
 
-const colors = [
-  { hex: '#f44336', rgb: '244,67,54' },
-  { hex: '#e91e63', rgb: '233,30,99' },
-  { hex: '#9c27b0', rgb: '156,39,176' },
-  { hex: '#673ab7', rgb: '103,58,183' },
-  { hex: '#3f51b5', rgb: '63,81,181' },
-  { hex: '#2196f3', rgb: '33,150,243' },
-];
+// const colors = [
+//   { hex: '#f44336', rgb: '244,67,54' },
+//   { hex: '#e91e63', rgb: '233,30,99' },
+//   { hex: '#9c27b0', rgb: '156,39,176' },
+//   { hex: '#673ab7', rgb: '103,58,183' },
+//   { hex: '#3f51b5', rgb: '63,81,181' },
+//   { hex: '#2196f3', rgb: '33,150,243' },
+// ];
 
-const paletteContainer = document.querySelector('.colorpicker_13');
-const cardsMarkup = createColorCardsMarkup(colors); //* создали строку с разметкой
+// const paletteContainer = document.querySelector('.colorpicker_13');
+// const cardsMarkup = createColorCardsMarkup(colors); //* создали строку с разметкой
 
-paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup) //* повесили строку с разметкой в класс .colorpicker_13
+// paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup) //* повесили строку с разметкой в класс .colorpicker_13
 
-paletteContainer.addEventListener('click', onPaletteContainerClick);
+// paletteContainer.addEventListener('click', onPaletteContainerClick);
 
-function createColorCardsMarkup(colors) { //? Создаёт разметку из массива элементов
-  const markup = colors.map(({ hex, rgb }) => {
-    return `
-      <div class="colorpicker_13">
-        <div class="color-swatch"
-          data-hex="${hex}"
-          data-rgb="${rgb}"
-          style="background-color: ${hex}">  
-        </div>
-        <div class="color-meta">
-          <p>HEX:${hex}</p>
-          <p>RGB: ${rgb}</p>
-        </div>
-      </div>
-    `;
-  }).join('');
-  // console.log(markup[0]);
-  return markup;
-}
+// function createColorCardsMarkup(colors) { //? Создаёт разметку из массива элементов
+//   const markup = colors.map(({ hex, rgb }) => {
+//     return `
+//       <div class="colorpicker_13">
+//         <div class="color-swatch"
+//           data-hex="${hex}"
+//           data-rgb="${rgb}"
+//           style="background-color: ${hex}">
+//         </div>
+//         <div class="color-meta">
+//           <p>HEX:${hex}</p>
+//           <p>RGB: ${rgb}</p>
+//         </div>
+//       </div>
+//     `;
+//   }).join('');
+//   // console.log(markup[0]);
+//   return markup;
+// }
 
-function onPaletteContainerClick(evt) {
-  if (!evt.target.classList.contains("color-swatch")) { //? если клик не по квадрату с цветом то ретурн
-    return
-  }
+// function onPaletteContainerClick(evt) {
+//   if (!evt.target.classList.contains("color-swatch")) { //? если клик не по квадрату с цветом то ретурн
+//     return
+//   }
 
-  const parentColorCard = evt.target.closest('.colorpicker_13'); //? найдёт ближайшего родителя с классом colorpicker_13
+//   const parentColorCard = evt.target.closest('.colorpicker_13'); //? найдёт ближайшего родителя с классом colorpicker_13
 
-  removeActiveClass();
-  addActiveClass(parentColorCard);
-  setBobyColor(evt.target.dataset.hex);
-}
+//   removeActiveClass();
+//   addActiveClass(parentColorCard);
+//   setBobyColor(evt.target.dataset.hex);
+// }
 
-function setBobyColor(color) {
-  document.body.style.backgroundColor = color; //* применим на боди backgroundColor цвет из dataset.hex
-}
+// function setBobyColor(color) {
+//   document.body.style.backgroundColor = color; //* применим на боди backgroundColor цвет из dataset.hex
+// }
 
-function removeActiveClass() {
-  const currentActiveCard = document.querySelector('.colorpicker_13.is-active'); //* ссылка на два класса вместе
+// function removeActiveClass() {
+//   const currentActiveCard = document.querySelector('.colorpicker_13.is-active'); //* ссылка на два класса вместе
 
-  if (currentActiveCard) { //* если активный класс есть то удалим его
-    currentActiveCard.classList.remove('is-active');
-  }
-}
+//   if (currentActiveCard) { //* если активный класс есть то удалим его
+//     currentActiveCard.classList.remove('is-active');
+//   }
+// }
 
-function addActiveClass(card) {
-  card.classList.add('is-active'); //* добавим активный класс
+// function addActiveClass(card) {
+//   card.classList.add('is-active'); //* добавим активный класс
+// }
+
+
+//todo ========================= Throttle и Debounce практика ===========================================================
+
+//! ========= события движения мышки =================
+
+// const coordsOutputRef = document.querySelector('.js-coords');
+// let mouseMoveCounter = 0;
+
+// // window.addEventListener('mousemove', onMouseMove)  //* повесил слушателя событий на window при движении мышки
+
+// const throttleOnMouseMove = _.throttle(onMouseMove, 500); //* из библиотеки Lodasch с задержкой 500ms
+// window.addEventListener('mousemove', throttleOnMouseMove)  //* повесил слушателя событий при движении мышки с методом throttle
+
+// function onMouseMove(evt) { //* функция считает сколько раз сработала функция и выведет данные на экран
+//   mouseMoveCounter += 1;
+
+//   coordsOutputRef.textContent = `
+//   Кол-во вызовов onMouseMove: ${mouseMoveCounter},
+//   X: ${evt.clientX},
+//   Y: ${evt.clientY},
+//   `;
+// }
+
+//!========= события в input =========================
+
+// const inputRef = document.querySelector('.js-input');
+// const outputRef = document.querySelector('.js-output');
+// let inputCounter = 0;
+
+// const debounceInput = _.debounce(onInputChange, 200); //* из библиотеки Lodasch 200ms после остановки ввода
+
+// inputRef.addEventListener('input', debounceInput);
+
+// function onInputChange(evt) {
+//   inputCounter += 1;
+
+//   outputRef.textContent = `
+//   Кол-во вызовов onInputChange: ${inputCounter},
+//   Значение: ${evt.target.value}
+//   `;
+// }
+
+//todo ================================== Мастерская с поиском ===================================
+
+// const tech = [
+//   { label: 'HTML' },
+//   { label: 'CSS' },
+//   { label: 'JavaScript' },
+//   { label: 'Node.js' },
+//   { label: 'React' },
+//   { label: 'Vue' },
+//   { label: 'Next.js' },
+//   { label: 'Mobx' },
+//   { label: 'Redux' },
+//   { label: 'React Router' },
+//   { label: 'GraphQL' },
+//   { label: 'PostgreSQL' },
+//   { label: 'MongoDB' },
+// ];
+
+// const refs = {
+//   list: document.querySelector('.js-list'),
+//   input: document.querySelector('#filter'),
+// }
+
+// refs.input.addEventListener('input', _.debounce(onFilterChange, 300)) //* слушатель на input
+
+// refs.list.innerHTML = createListItems(tech); //? повесили всё в DOM
+
+// function createListItems(items) {
+//   return items.map(item => `<li>${item.label}</li>`).join('');
+// }
+
+// function onFilterChange(evt) {
+//   const filter = evt.target.value.toLowerCase(); //* запишет в пер.значение из input
+
+//   const filteredItems = tech.filter(t => t.label.toLocaleLowerCase().includes(filter));
+//   // отфильтровали только те label которые совпадают с filter
+
+//   refs.list.innerHTML = createListItems(filteredItems);; //? повесили отфильтрованое в DOM
+// }
+
+//todo ============== Ленивая загрузка ============================================
+
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+lazyImages.forEach(image => {
+  image.addEventListener('load', onImageLoaded, { once: true });
+  //* повесит слушателя на загрузку и удалит слушателя когда выполнится { once: true }
+});
+
+function onImageLoaded(evt) {
+  console.log('Картинка загрузилась');
+  evt.target.classList.add('appear'); //* повесит класс с появлением при загрузке
 }
