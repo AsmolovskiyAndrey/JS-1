@@ -589,7 +589,7 @@
 
 //todo ============== Ленивая загрузка ============================================
 
-const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+const lazyImages = document.querySelectorAll('img[data-src]');
 
 lazyImages.forEach(image => {
   image.addEventListener('load', onImageLoaded, { once: true });
