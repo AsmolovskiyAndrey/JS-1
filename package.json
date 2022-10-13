@@ -1,0 +1,29 @@
+{
+  "name": "js-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "echo \"Скрипт отработает автоматически перед при вызове start\"",
+    "start": "node app.js",
+    "poststart": "echo \"Скрипт отработает автоматически после при вызове start\"",
+    "myScriptTest": "Привет это выполнение скрипта myScriptTest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsmolovskiyAndrey/JS-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AsmolovskiyAndrey/JS-1/issues"
+  },
+  "homepage": "https://github.com/AsmolovskiyAndrey/JS-1#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "joi": "^17.6.3",
+    "shortid": "^2.2.16"
+  }
+}
