@@ -88,3 +88,101 @@ import * as myModule from "./export.js";
 console.log(myModule.a); //123
 console.log(myModule.square(11)); //121
 console.log(myModule.b); //asd
+
+
+//! ========================= Формат JSON ============================================
+
+// JSON (JavaScript Object Notation) - современный текстовый формат хранения и передачи структурированных данных в текстовом виде.
+// Синтаксис похож на объект, за исключением того, что ключи это всегда строки в двойных кавычках.
+// Строчные значения также обязательно должны быть заключены в двойные кавычки.
+// Значениями свойств могут быть типы string, number, object, array, boolean и null.
+
+//* Пример
+// user.json
+// {
+//   "name": "Josh",
+//   "weight": 175,
+//   "age": 30,
+//   "eyecolor": "brown",
+//   "isHappy": true,
+//   "cars": ["Chevy", "Honda"],
+//   "favoriteBook": {
+//     "title": "The Last Kingdom",
+//     "author": "Bernard Cornwell",
+//     "rating": 8.38
+//   }
+// }
+
+// Javascript и JSON отлично работают вместе благодаря методам встроенного класса JSON,
+// которые преобразуют JavaScript объект в JSON и обратно.Независимо от того, что у вас есть,
+// можно легко получить обратное.
+
+//?================ Метод JSON.stringify()
+//* Принимает значение и преобразовывает его в JSON.Значением может быть число, буль, null,
+//* массив или обьект.Строки это уже валидный JSON поэтому их преобразование не имеет смысла.
+
+// const dog = {
+//   name: "Mango",
+//   age: 3,
+//   isHappy: true,
+// };
+
+// const dogJSON = JSON.stringify(dog);
+// console.log(dogJSON); // "{"name":"Mango","age":3,"isHappy":true}"
+
+//* Не любой JavaScript объект может быть преобразован один к одному в JSON.Например,
+//* если у объекта есть методы, то при преобразовании они будут проигнорированы.
+
+// const dog = {
+//   name: "Mango",
+//   age: 3,
+//   isHappy: true,
+//   bark() {
+//     console.log("Woof!");
+//   },
+// };
+
+// const dogJSON = JSON.stringify(dog);
+// console.log(dogJSON); // "{"name":"Mango","age":3,"isHappy":true}"
+
+//? ============== Метод JSON.parse() ========================================
+
+// Чтобы получить из JSON валидное JavaScript значение, его необходимо распарсить(parse).
+// Это операция обратная преобразованию в строку(stringify).
+
+// const json = '{"name":"Mango","age":3,"isHappy":true}';
+
+// const dog = JSON.parse(json);
+// console.log(dog); // {name: "Mango", age: 3, isHappy: true}
+// console.log(dog.name); // "Mango"
+
+//? ================== Обработка ошибок ======================================
+
+// Если методам класса JSON передать невалидный JSON, то они «выбросят» ошибку и весь скрипт упадёт.
+// Для того чтобы избежать этого, используется конструкция try...catch, которая позволяет «ловить» и
+// обрабатывать ошибки выполнения скрипта.
+
+try {
+  // Code that may throw a runtime error
+} catch (error) {
+  // Error handling
+}
+
+// 1) Сначала выполняется код внутри блока try.
+// 2) Если ошибок нет, блок catch игнорируется и управление передаётся дальше.
+// 3) Если в блоке try произошла ошибка, его выполнение останавливается и интерпретатор переходит в блок catch.
+// Переменная error это объект ошибки с информацией о том, что произошло.
+// У этого объекта есть несколько полезных свойств:
+
+// name - тип ошибки. Для ошибки парса это SyntaxError.
+// message - сообщение о деталях ошибки.
+// stack - стек вызовов функций на момент ошибки. Используется для отладки.
+
+try {
+  const data = JSON.parse("Well, this is awkward");
+} catch (error) {
+  console.log(error.name); // "SyntaxError"
+  console.log(error.message); // Unexpected token W in JSON at position 0
+}
+
+console.log("✅ This is fine, we handled parse error in try...catch");
